@@ -51,7 +51,7 @@
 							<th>Codigo produccion</th>
 							<th>Descripcion</th>
 							@if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
-							<th>EDITAR</th>
+							<!---<th>EDITAR</th>--->
 							<th>ELIMINAR</th>
 							@endif
 						</tr>
@@ -64,8 +64,7 @@
 							<td>{{$produccion->cod_producto}}</td>
 							<td>{{$produccion->descripcion}}</td>
 							@if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
-							<td><a href="" class="btn btn-warning">Editar</a> </td>
-							
+							<!---<td><a href="" class="btn btn-warning">Editar</a> </td>--->
 							<td>
 								<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
 									Eliminar

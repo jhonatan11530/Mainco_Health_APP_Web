@@ -54,7 +54,7 @@
 		});
 
 		$('#op').on('keyup', function() {
-			document.getElementById("orden").innerHTML =this.value;
+			document.getElementById("orden").innerHTML = this.value;
 			if (table.column(2).search() !== this.value) {
 				table
 					.column(2)
@@ -98,9 +98,52 @@
 		setInterval(
 			function() {
 				$('#recargar').load('../ajax/actualizarorden.php')
-			},2000
+			}, 2000
 		);
 	})
+
+	$(document).ready(function() {
+		$("#myForm").bind("submit", function() {
+			// Capturamnos el boton de envío
+			var btnEnviar = $("#btnEnviar");
+			$.ajax({
+				type: $(this).attr("method"),
+				url: $(this).attr("action"),
+				data: $(this).serialize(),
+				beforeSend: function() {
+					/*
+					 * Esta función se ejecuta durante el envió de la petición al
+					 * servidor.
+					 * */
+					// btnEnviar.text("Enviando"); Para button 
+					btnEnviar.val("Enviando"); // Para input de tipo button
+					btnEnviar.attr("disabled", "disabled");
+				},
+				complete: function(data) {
+					/*
+					 * Se ejecuta al termino de la petición
+					 * */
+					btnEnviar.val("Enviar formulario");
+					btnEnviar.removeAttr("disabled");
+				},
+				success: function(data) {
+					/*
+					 * Se ejecuta cuando termina la petición y esta ha sido
+					 * correcta
+					 * */
+					$(".respuesta").html(data);
+				},
+				error: function(data) {
+					/*
+					 * Se ejecuta si la peticón ha sido erronea
+					 * */
+					alert("Problemas al tratar de enviar el formulario");
+				}
+			});
+			// Nos permite cancelar el envio del formulario
+			return false;
+		});
+	});
 </script>
 
 @section('content')
@@ -157,7 +200,7 @@
 
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" onclick="limpiar()">Limpiar</button>
-						<input type="submit" class="btn btn-primary" value="Aplicar filtro" >
+						<input type="submit" class="btn btn-primary" value="Aplicar filtro">
 					</div>
 				</form>
 			</div>
@@ -188,113 +231,116 @@
 	</div>
 </div>
 
-<div id="recargar"></div>
+<p class="respuesta">
+
+	<p>
+		<div id="recargar"></div>
 
 
-<span class="d-block p-2 bg-primary text-white">
-	<center>
-		<h3>INFORMACION DE ACTIVIDADES</h3>
-	</center>
-</span>
-<div class="col-md-15">
-	<div class="card">
-		<div class="card-body">
-			<div class="table-responsive">
-				<table id="operador" class="display table table-striped table-hover">
+		<span class="d-block p-2 bg-primary text-white">
+			<center>
+				<h3>INFORMACION DE ACTIVIDADES</h3>
+			</center>
+		</span>
+		<div class="col-md-15">
+			<div class="card">
+				<div class="card-body">
+					<div class="table-responsive">
+						<table id="operador" class="display table table-striped table-hover">
 
-					<thead class="bg-primary text-white">
-						<tr>
-							<th>ID OPERADOR</th>
-							<th>NOMBRE DEL OPERADOR</th>
-							<th>NUMERO O.P</th>
-							<th>ACTIVIDAD</th>
-							<th>HORA ENTRADA</th>
-							<th>HORA SALIDA</th>
-							<th>CANTIDAD BUENAS</th>
-							<th>CANTIDAD MALAS</th>
-							<th>EFICIENCIA</th>
-							<th>EFICACIA</th>
-							<th>FECHA</th>
-						</tr>
+							<thead class="bg-primary text-white">
+								<tr>
+									<th>ID OPERADOR</th>
+									<th>NOMBRE DEL OPERADOR</th>
+									<th>NUMERO O.P</th>
+									<th>ACTIVIDAD</th>
+									<th>HORA ENTRADA</th>
+									<th>HORA SALIDA</th>
+									<th>CANTIDAD BUENAS</th>
+									<th>CANTIDAD MALAS</th>
+									<th>EFICIENCIA</th>
+									<th>EFICACIA</th>
+									<th>FECHA</th>
+								</tr>
 
-					</thead>
+							</thead>
 
-					<tbody>
-						@foreach ($operador as $operadores)
+							<tbody>
+								@foreach ($operador as $operadores)
 
-						<tr>
+								<tr>
 
-							<td>{{$operadores->id}}</td>
-							<td>{{$operadores->nombre}}</td>
-							<td>{{$operadores->numero_op}}</td>
-							<td>{{$operadores->tarea}}</td>
-							<td>{{$operadores->hora_inicial}}</td>
-							<td>{{$operadores->hora_final}}</td>
-							<td>{{$operadores->cantidad}}</td>
-							<td>{{$operadores->cantidad_fallas}}</td>
-							<td>{{$operadores->eficencia}}</td>
-							<td>{{$operadores->eficacia}}</td>
-							<td>{{$operadores->inicial}}</td>
-							{!! Form::close() !!}
-						</tr>
-						@endforeach
-					</tbody>
+									<td>{{$operadores->id}}</td>
+									<td>{{$operadores->nombre}}</td>
+									<td>{{$operadores->numero_op}}</td>
+									<td>{{$operadores->tarea}}</td>
+									<td>{{$operadores->hora_inicial}}</td>
+									<td>{{$operadores->hora_final}}</td>
+									<td>{{$operadores->cantidad}}</td>
+									<td>{{$operadores->cantidad_fallas}}</td>
+									<td>{{$operadores->eficencia}}</td>
+									<td>{{$operadores->eficacia}}</td>
+									<td>{{$operadores->inicial}}</td>
+									{!! Form::close() !!}
+								</tr>
+								@endforeach
+							</tbody>
 
 
-				</table>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
 
-<span class="d-block p-2 bg-primary text-white">
-	<center>
-		<h3>INFORMACION DE TIEMPOS DE PARO</h3>
-	</center>
-</span>
-<div class="col-md-15">
-	<div class="card">
-		<div class="card-body">
-			<div class="table-responsive">
-				<table id="motivo" class="display table table-striped table-hover">
+		<span class="d-block p-2 bg-primary text-white">
+			<center>
+				<h3>INFORMACION DE TIEMPOS DE PARO</h3>
+			</center>
+		</span>
+		<div class="col-md-15">
+			<div class="card">
+				<div class="card-body">
+					<div class="table-responsive">
+						<table id="motivo" class="display table table-striped table-hover">
 
 
-					<thead class="bg-primary text-white">
-						<tr>
-							<th>ID DEL OPERADOR</th>
-							<th>NUMERO O.P</th>
-							<th>ACTIVIDAD</th>
-							<th>TIEMPO DESCANSO</th>
-							<th>CODIGO DESCANSO</th>
-							<th>MOTIVO DESCANSO</th>
-							<th>FECHA</th>
-							<th>HORA</th>
-						</tr>
+							<thead class="bg-primary text-white">
+								<tr>
+									<th>ID DEL OPERADOR</th>
+									<th>NUMERO O.P</th>
+									<th>ACTIVIDAD</th>
+									<th>TIEMPO DESCANSO</th>
+									<th>CODIGO DESCANSO</th>
+									<th>MOTIVO DESCANSO</th>
+									<th>FECHA</th>
+									<th>HORA</th>
+								</tr>
 
-					</thead>
-					<tbody>
-						@foreach ($motivo as $motivos)
+							</thead>
+							<tbody>
+								@foreach ($motivo as $motivos)
 
-						<tr>
-							<td>{{$motivos->id}}</td>
-							<td>{{$motivos->numero_op}}</td>
-							<td>{{$motivos->tarea}}</td>
-							<td>{{$motivos->tiempo_descanso}}</td>
-							<td>{{$motivos->code}}</td>
-							<td>{{$motivos->motivo_descanso}}</td>
-							<td>{{$motivos->fecha}}</td>
-							<td>{{$motivos->hora}}</td>
-							{!! Form::close() !!}
-						</tr>
-						@endforeach
-					</tbody>
+								<tr>
+									<td>{{$motivos->id}}</td>
+									<td>{{$motivos->numero_op}}</td>
+									<td>{{$motivos->tarea}}</td>
+									<td>{{$motivos->tiempo_descanso}}</td>
+									<td>{{$motivos->code}}</td>
+									<td>{{$motivos->motivo_descanso}}</td>
+									<td>{{$motivos->fecha}}</td>
+									<td>{{$motivos->hora}}</td>
+									{!! Form::close() !!}
+								</tr>
+								@endforeach
+							</tbody>
 
 
-				</table>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
 
 
-@endsection
+		@endsection
