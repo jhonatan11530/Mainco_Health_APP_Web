@@ -50,8 +50,10 @@
 							<th>Numero O.P </th>
 							<th>Codigo produccion</th>
 							<th>Descripcion</th>
+							<th>Cantidad</th>
 							@if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
 							<!---<th>EDITAR</th>--->
+							
 							<th>ELIMINAR</th>
 							@endif
 						</tr>
@@ -63,6 +65,7 @@
 							<td>{{$produccion->numero_op}}</td>
 							<td>{{$produccion->cod_producto}}</td>
 							<td>{{$produccion->descripcion}}</td>
+							<td>{{$produccion->cantidad}}</td>
 							@if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
 							<!---<td><a href="" class="btn btn-warning">Editar</a> </td>--->
 							<td>

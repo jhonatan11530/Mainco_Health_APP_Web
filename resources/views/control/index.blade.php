@@ -54,7 +54,6 @@
 		});
 
 		$('#op').on('keyup', function() {
-			document.getElementById("orden").innerHTML = this.value;
 			if (table.column(2).search() !== this.value) {
 				table
 					.column(2)

@@ -135,6 +135,6 @@ class ProduccionController extends Controller
     {
         $produccion = Produccion::find($id);
     $produccion->delete();
-    return redirect('produccion')->with('warning','EL OPERADOR FUE BORRADO EXITOSAMENTE !');
+    return redirect('produccion')->with('warning','LA ORDER DE PRODUCCION FUE BORRADO EXITOSAMENTE !');
     }
 }
