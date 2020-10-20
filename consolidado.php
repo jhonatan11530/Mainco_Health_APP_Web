@@ -1,6 +1,6 @@
 <?php
 require_once("ConexionSQL.php");
-
+error_reporting(0);
 require_once 'PHPExcel.php';
 $nombre = $_REQUEST['nombre'];
 

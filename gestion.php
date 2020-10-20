@@ -1,6 +1,7 @@
 <?php
 require_once("ConexionSQL.php");
 require_once 'PHPExcel.php';
+error_reporting(0);
  $fechainicial = $_REQUEST['HUMANA'];
 
 

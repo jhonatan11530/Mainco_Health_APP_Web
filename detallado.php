@@ -8,11 +8,9 @@ $fechafinal = $_POST['fechaDOS'];
 $nombre = $_POST['nombre'];
 
 $SQL = sqlsrv_connect(Server() , connectionInfo());
+
 $conn = "SELECT * FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN'".$fechainicial."' AND '".$fechafinal."' ORDER BY numero_op DESC";
 $resultado = sqlsrv_query($SQL, $conn);
-
-
-
 
 
 $sql_consulta = "SELECT  DISTINCT nombre FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
@@ -112,9 +110,10 @@ while($row = sqlsrv_fetch_array($ensayo, SQLSRV_FETCH_ASSOC)) {
 
 while($row = sqlsrv_fetch_array($estimando, SQLSRV_FETCH_ASSOC)) {
   $estimado= $row["timepo_estimado"] ; 
-
+ 
   $estimados = gmdate('H:i:s', $estimado);
-  $objPHPExcel->getActiveSheet()->setCellValue('H7' ,strval($estimado) );
+  $objPHPExcel->getActiveSheet()->setCellValue('H7' ,$estimado);
+
 } 
 while ($row = sqlsrv_fetch_array($resultt,SQLSRV_FETCH_ASSOC)){ 
   
@@ -148,8 +147,8 @@ while ($row = sqlsrv_fetch_array($resultt,SQLSRV_FETCH_ASSOC)){
 
     }
 
-  while ($row = sqlsrv_fetch_array($fecha,SQLSRV_FETCH_ASSOC)){ 
-   
+  while ($row = sqlsrv_fetch_array($fecha,SQLSRV_FETCH_ASSOC)){
+
      $datetime1 = new DateTime($row["hora_final"]->format('H:i:s'));
      $datetime2 = new DateTime($row["hora_inicial"]->format('H:i:s'));
      $interval = $datetime1->diff($datetime2);
@@ -198,5 +197,4 @@ $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 $objWriter->save('php://output');
 
 
-exit; /*
-*/
+exit; 
