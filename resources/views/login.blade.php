@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
-	<link rel="icon" href="{{url('img/mainco.jpg')}}" type="image/png" />
+	<link rel="icon" href="{{url('img/icon.png')}}" type="image/png" />
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{url('vendor/bootstrap/css/bootstrap.min.css')}}">
 	<!--===============================================================================================-->

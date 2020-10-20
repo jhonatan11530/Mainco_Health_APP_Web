@@ -427,7 +427,7 @@
 	@if ((Auth::user()->rol == 1) or (Auth::user()->rol == 4))
 	<thead class="bg-primary text-white">
 		<tr>
-			<th>EXPORTAR DATOS DE INGRESO A GESTION HUMAN</th>
+			<th>EXPORTAR DATOS DE INGRESO A GESTION HUMANA</th>
 			<th>EXPORTAR DATOS </th>
 		</tr>
 	</thead>
@@ -462,7 +462,7 @@
 				</td>
 
 				<td>
-					<button class="btn btn-primary">GENERAR INFORME</button>
+					<button class="btn btn-primary">GENERAR INFORME <i class="fas fa-cloud-download-alt"></i></button>
 				</td>
 				</td>
 

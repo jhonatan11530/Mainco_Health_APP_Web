@@ -22,19 +22,18 @@
 
                          <div class="form-group">
                               {!! Form::label('Nombre', 'Asignar numero op :') !!}
-                              <input class="form-control" name="numero_id" required />
+                              <input class="form-control" name="numero_id" value="{{$produccion->numero_op}}" required />
 
                          </div>
 
-
                          <div class="form-group">
                               {!! Form::label('codigo producto', 'codigo producto:') !!}
-                              <input class="form-control" name="cod_producto" value="{{$produccion->cod_producto}}" />
+                              <input class="form-control" name="cod_producto" value="{{$produccion->cod_producto}}" readonly/>
                          </div>
 
                          <div class="form-group">
                               {!! Form::label('descripcion', 'Descripcion :') !!}
-                              <input class="form-control" name="descripcion" value="{{$produccion->descripcion}}" />
+                              <input class="form-control" name="descripcion" value="{{$produccion->descripcion}}" readonly/>
                          </div>
 
                          <div class="form-group">

@@ -19,11 +19,9 @@ class User extends Model implements AuthenticatableContract,
     public $timestamps = false;
     
     protected $table = 'usuarios';
-
     protected $fillable = ['cedula', 'password'];
 
     protected $hidden = ['id', 'remember_token'];
-
 
     public function rol(){
         return $this->belongsTo('App\Rol');

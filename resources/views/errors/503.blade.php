@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ERROR.</title>
-
+        <title>MANTENIMIENTO</title>
+        <link rel="icon" href="{{url('img/icon_error.png')}}" type="image/png" />
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
         <style>
@@ -40,8 +40,10 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">SE ENCUENTRA EN MANTENIMIENTO</div>
+            <img src="{{url('img/mantenimiento.jpg')}}" alt="Girl in a jacket" width="300" height="300">
+                <div class="title">LA APP SE ENCUENTRA EN MANTENIMIENTO</div>
             </div>
         </div>
+     
     </body>
 </html>
