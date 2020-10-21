@@ -98,13 +98,15 @@
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h2 class="modal-title" id="exampleModalLongTitle">Cerrar sesión Por Inactividad</h2>
+						<h2 class="modal-title" id="exampleModalLongTitle">Usuario Inactivo</h2>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
-						...
+						<h2>
+							¿ Desea Cerrar sesión por inactividad o mantener su sesión activa ?
+						</h2>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="Exit();">Cerrar sesión</button>
@@ -115,7 +117,7 @@
 		</div>
 
 		<!-- Sidebar -->
-		<div class="sidebar sidebar-style-2">			
+		<div class="sidebar sidebar-style-2">
 			<div class="sidebar-wrapper scrollbar scrollbar-inner">
 				<div class="sidebar-content">
 					<div class="user">
@@ -130,9 +132,9 @@
 									Cargo : {{ Auth::user()->cargo}}
 							</a>
 							<br>
-					<a class="btn btn-primary" href="{{ url('logout') }}"><strong>Cerrar Sesión</strong></a>
-					</span>
-					</a>
+							<a class="btn btn-primary" href="{{ url('logout') }}"><strong>Cerrar Sesión</strong></a>
+							</span>
+							</a>
 						</div>
 					</div>
 
@@ -394,10 +396,48 @@
 
 
 	<script>
+		// Set the date we're counting down to
+		var countDownDate = new Date();
+		countDownDate.setHours(countDownDate.getHours() + 2);
+		//var real = countDownDate.getHours()+1+":"+countDownDate.getMinutes()+":"+countDownDate.getSeconds();
+
+		// Update the count down every 1 second
+		var x = setInterval(function() {
+
+			// Get today's date and time
+			var now = new Date().getTime();
+
+			// Find the distance between now and the count down date
+			var distance = countDownDate - now;
+			// Time calculations for days, hours, minutes and seconds
+			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			// Output the result in an element with id="demo"
+			document.getElementById("demo").innerHTML = hours + "H " +
+				minutes + "M " + seconds + "S";
+			document.getElementById("demo").style.color = "#000000";
+			document.getElementById("demo").style.fontSize = "18px";
+			// If the count down is over, write some text 
+
+			if (minutes <= 20) {
+				clearInterval(x);
+				$('#exampleModalCenter').modal('show');
+			}
+
+			if (distance = 0) {
+				document.getElementById("demo").innerHTML = "EXPIRO";
+				window.location.href = "{{ url('logout') }}";
+			}
+
+
+		}, 1000);
+
+		function Reset() {
+			document.getElementById("demo").innerHTML = "REINICIANDO";
 			// Set the date we're counting down to
 			var countDownDate = new Date();
 			countDownDate.setHours(countDownDate.getHours() + 2);
-			//var real = countDownDate.getHours()+1+":"+countDownDate.getMinutes()+":"+countDownDate.getSeconds();
 
 			// Update the count down every 1 second
 			var x = setInterval(function() {
@@ -407,6 +447,7 @@
 
 				// Find the distance between now and the count down date
 				var distance = countDownDate - now;
+
 				// Time calculations for days, hours, minutes and seconds
 				var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 				var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -418,59 +459,22 @@
 				document.getElementById("demo").style.color = "#000000";
 				document.getElementById("demo").style.fontSize = "18px";
 				// If the count down is over, write some text 
-				if (hours = 0) {
-					if (minutes < 20) {
-						clearInterval(x);
-						$('#exampleModalCenter').modal('show');
-					}
+				if (minutes <= 20) {
+					clearInterval(x);
+					$('#exampleModalCenter').modal('show');
 				}
+				if (distance < 0) {
+					clearInterval(x);
 
-				if (distance = 0) {
-					document.getElementById("demo").innerHTML = "EXPIRO";
-					window.location.href = "{{ url('logout') }}";
+					document.getElementById("demo").innerHTML = "EXPIRED";
 				}
-
-
 			}, 1000);
+		}
 
-			function Reset() {
-				document.getElementById("demo").innerHTML = "REINICIANDO CONTADOR";
-				// Set the date we're counting down to
-				var countDownDate = new Date();
-				countDownDate.setHours(countDownDate.getHours() + 2);
-	
-				// Update the count down every 1 second
-				var x = setInterval(function() {
-
-					// Get today's date and time
-					var now = new Date().getTime();
-
-					// Find the distance between now and the count down date
-					var distance = countDownDate - now;
-
-					// Time calculations for days, hours, minutes and seconds
-					var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-					var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-					var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-					// Output the result in an element with id="demo"
-					document.getElementById("demo").innerHTML = hours + "  " +
-						minutes + "  " + seconds + "";
-					document.getElementById("demo").style.color = "#000000";
-					document.getElementById("demo").style.fontSize = "22px";
-					// If the count down is over, write some text 
-					if (distance < 0) {
-						clearInterval(x);
-
-						document.getElementById("demo").innerHTML = "EXPIRED";
-					}
-				}, 1000);
-			}
-
-			function Exit() {
-				window.location.href = "{{ url('logout') }}";
-			}
-		</script>
+		function Exit() {
+			window.location.href = "{{ url('logout') }}";
+		}
+	</script>
 
 	@yield('scripts')
 

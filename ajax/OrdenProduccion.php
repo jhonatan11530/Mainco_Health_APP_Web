@@ -39,7 +39,7 @@
         <label class='font-weight-bold text-dark'>ACTUALIZADO HACE : " . date("h:i:s A") . " (HORA SUJETA AL SERVIDOR)</label>
         </div>
         <h2 class='mb-2'>NUMERO DE ORDEN DE PRODUCCION</h2>
-        <div class='h1 fw-bold text-primary'>".$dato."</div>
+        <div class='h1 fw-bold text-primary'>" . $dato . "</div>
         </center>";
 
         echo "<div class='row'>
@@ -58,7 +58,7 @@
         <div class='col-md-4'>
             <div class='card'>
                 <div class='card-body pb-0'>
-                    <div class='h1 fw-bold float-right text-danger'> ". $cantiproduccion . "</div>
+                    <div class='h1 fw-bold float-right text-danger'> " . $cantiproduccion . "</div>
                     <h2 class='mb-2'>Total En O.P</h2>
                     <p class='text-muted'>cantidad en orden de produccion</p>
                     <div class='pull-in sparkline-fix'>
@@ -71,7 +71,7 @@
         <div class='col-md-4'>
             <div class='card'>
                 <div class='card-body pb-0'>
-                    <div class='h1 fw-bold float-right text-warning'>". $cantioperario . "</div>
+                    <div class='h1 fw-bold float-right text-warning'>" . $cantioperario . "</div>
                     <h2 class='mb-2'>Total Produccido</h2>
                     <p class='text-muted'>total cantidad produccido por operario</p>
                     <div class='pull-in sparkline-fix'>
@@ -89,6 +89,14 @@
                     <h3>INFORMACION EN TIEMPO REAL DE LA ORDEN DE PRODUCCION</h3>
                 </center>
             </span>";
+
+        echo "<center>
+        <div class='col-md-6 mb-3'>
+        <label class='font-weight-bold text-dark'>ACTUALIZADO HACE : " . date("h:i:s A") . " (HORA SUJETA AL SERVIDOR)</label>
+        </div>
+        <h2 class='mb-2'>! NO DATOS DE LA ORDEN DE PRODUCCION !</h2>
+        <div class='h1 fw-bold text-primary'>" . $dato . "</div>
+        </center>";
 
         echo "<div class='row'>
         <div class='col-md-4'>
