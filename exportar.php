@@ -97,6 +97,7 @@ if ($Radio == 85 && isset($fechainicial) && isset($fechafinal)) {
   $consulta = "SELECT * FROM proyecto.promedio WHERE fecha BETWEEN '" . $fechainicial . "' AND '" . $fechafinal . "' AND eficiencia < 85 ORDER BY fecha ASC ";
   $resultado = sqlsrv_query($mysqli, $consulta);
 
+ 
 
   $objPHPExcel = new PHPExcel();
   $fila1 = 6;

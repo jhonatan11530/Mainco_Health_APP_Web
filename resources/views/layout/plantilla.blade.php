@@ -420,12 +420,12 @@
 			document.getElementById("demo").style.fontSize = "18px";
 			// If the count down is over, write some text 
 
-			if (minutes <= 20) {
-				clearInterval(x);
+			if (hours=0 && minutes <= 20) {
 				$('#exampleModalCenter').modal('show');
 			}
 
 			if (distance = 0) {
+				clearInterval(x);
 				document.getElementById("demo").innerHTML = "EXPIRO";
 				window.location.href = "{{ url('logout') }}";
 			}
@@ -441,7 +441,7 @@
 
 			// Update the count down every 1 second
 			var x = setInterval(function() {
-
+				clearInterval(x);
 				// Get today's date and time
 				var now = new Date().getTime();
 
@@ -458,16 +458,7 @@
 					minutes + "M " + seconds + "S";
 				document.getElementById("demo").style.color = "#000000";
 				document.getElementById("demo").style.fontSize = "18px";
-				// If the count down is over, write some text 
-				if (minutes <= 20) {
-					clearInterval(x);
-					$('#exampleModalCenter').modal('show');
-				}
-				if (distance < 0) {
-					clearInterval(x);
 
-					document.getElementById("demo").innerHTML = "EXPIRED";
-				}
 			}, 1000);
 		}
 

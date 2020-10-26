@@ -98,28 +98,18 @@
 	$(document).ready(function() {
 
 		$("#myForm").bind("submit", function() {
-			// Capturamnos el boton de envío
-			var btnEnviar = $("#btnEnviar");
+			// Capturamnos el boton de envío 
+
 			$.ajax({
 				type: $(this).attr("method"),
 				url: $(this).attr("action"),
 				data: $(this).serialize(),
-				beforeSend: function() {
-					/*
-					 * Esta función se ejecuta durante el envió de la petición al
-					 * servidor.
-					 * */
-					// btnEnviar.text("Enviando"); Para button 
-					btnEnviar.val("Enviando"); // Para input de tipo button
-					btnEnviar.attr("disabled", "disabled");
-				},
 				complete: function(data) {
 					/*
 					 * Se ejecuta al termino de la petición
 					 * */
-
-					btnEnviar.val("Enviar formulario");
-					btnEnviar.removeAttr("disabled");
+					$(".respuesta").html("Obteniendo Datos,por favor espere...");
+					
 				},
 				success: function(data) {
 					/*
@@ -131,6 +121,7 @@
 					setInterval(ajaxCall, 10000);
 
 					function ajaxCall() {
+						
 						var dato = "orden="+jQuery('#op').val();
 						$.ajax({
 							type: 'POST',
@@ -141,6 +132,7 @@
 
 							}
 						});
+						
 					}
 
 				},
@@ -242,14 +234,15 @@
 	</div>
 </div>
 
+<center>
 <p class="respuesta"></p>
-
+</center>
 <span class="d-block p-2 bg-primary text-white">
 	<center>
 		<h3>INFORMACION DE ACTIVIDADES</h3>
 	</center>
 </span>
-<div class="col-md-15">
+<div class="col-md-15" >
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
@@ -271,13 +264,20 @@
 						</tr>
 
 					</thead>
+					<?php
+                         $serverName = "srv2008";
+                         $connectionInfo = array("Database" => "proyecto", "UID" => "proyecto", "PWD" => "12345", "CharacterSet" => "UTF-8");
+                         $mysqli = sqlsrv_connect($serverName, $connectionInfo);
+                         $sql_statement = "SELECT * FROM proyecto.operador";
+                         $result = sqlsrv_query($mysqli, $sql_statement);
+                         ?>
 
+                         
 					<tbody>
 						@foreach ($operador as $operadores)
-
+							
 						<tr>
-
-							<td>{{$operadores->id}}</td>
+						<td>{{$operadores->id}}</td>
 							<td>{{$operadores->nombre}}</td>
 							<td>{{$operadores->numero_op}}</td>
 							<td>{{$operadores->tarea}}</td>
@@ -290,7 +290,7 @@
 							<td>{{$operadores->inicial}}</td>
 							{!! Form::close() !!}
 						</tr>
-						@endforeach
+					@endforeach
 					</tbody>
 
 

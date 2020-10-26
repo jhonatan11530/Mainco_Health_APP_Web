@@ -12,10 +12,8 @@ $SQL = sqlsrv_connect(Server() , connectionInfo());
 $conn = "SELECT * FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN'".$fechainicial."' AND '".$fechafinal."' ORDER BY numero_op DESC";
 $resultado = sqlsrv_query($SQL, $conn);
 
-
 $sql_consulta = "SELECT  DISTINCT nombre FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
 $resultt = sqlsrv_query($SQL, $sql_consulta);
-
 
 $consulta = "SELECT  id FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
 $filtro = sqlsrv_query($SQL, $consulta);
@@ -23,13 +21,42 @@ while ($row = sqlsrv_fetch_array($filtro,SQLSRV_FETCH_ASSOC)){
   $id =  $row['id'];
    }
    
+   $ORDEN = "SELECT numero_op FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN'".$fechainicial."' AND '".$fechafinal."' ORDER BY numero_op DESC";
+$resultadoORDEN = sqlsrv_query($SQL, $ORDEN);
+while ($row = sqlsrv_fetch_array($resultadoORDEN,SQLSRV_FETCH_ASSOC)){ 
+  $ORDEN_DE_PRODUCCION =  $row['numero_op'];
+   }
+   $search = "SELECT operador.cantidad,operador.tarea as tarea,cantidadbase, extandar
+    FROM proyecto.produccion INNER JOIN proyecto.tarea ON proyecto.produccion.cod_producto = proyecto.tarea.numero_op  INNER JOIN proyecto.operador ON proyecto.operador.tarea = proyecto.tarea.tarea
+      WHERE proyecto.operador.inicial='".$fechainicial."' AND proyecto.operador.nombre='".$nombre."' AND proyecto.produccion.numero_op='".$ORDEN_DE_PRODUCCION."'";
+    $res = sqlsrv_query($SQL, $search);  
+    
+    $cant = array();
+    $extandar = array();
+    while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
+// round($listo["extandar"] *3600) / $listo["cantidadbase"];
+     $cant[] = $listo["cantidad"];
+      $extandar[] = round($listo["extandar"] *3600) / $listo["cantidadbase"];
+    
+    }
 
+    for ($i=0; $i < count($cant); $i++) { 
+
+       $array[] = $cant[$i] * $extandar[$i];
+    }
+    $cantidadorden = array_sum($array);
+
+
+$consultaSUM = "SELECT SUM(cantidad) as cantidad FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
+$sumCant = sqlsrv_query($SQL, $consultaSUM);
+while ($row = sqlsrv_fetch_array($sumCant,SQLSRV_FETCH_ASSOC)){ 
+  $cantidad =  $row['cantidad'];
+
+   }
+   $EFICIENCIAGLOBAL = round($cantidad / $cantidadorden * 100);
 
 $consult = "SELECT * FROM proyecto.motivo_paro WHERE id='".$id."' AND fecha BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
 $result = sqlsrv_query($SQL, $consult);
-
-
-
 
 $sql_statement = "SELECT numero_op,hora_inicial,hora_final FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
 $verificar = sqlsrv_query($SQL, $sql_statement);
@@ -38,9 +65,8 @@ while ($row = sqlsrv_fetch_array($verificar,SQLSRV_FETCH_ASSOC)){
    }
 
 
-   $sum_paro = "SELECT SUM(DATEDIFF(SECOND, '00:00:00', CONVERT(time, tiempo_descanso))) AS tiempo_descanso FROM proyecto.motivo_paro WHERE id='".$id."' AND fecha BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
+$sum_paro = "SELECT SUM(DATEDIFF(SECOND, '00:00:00', CONVERT(time, tiempo_descanso))) AS tiempo_descanso FROM proyecto.motivo_paro WHERE id='".$id."' AND fecha BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
 $ensayo = sqlsrv_query($SQL, $sum_paro);
-
 
 $fechas = "SELECT hora_inicial,hora_final FROM proyecto.operador WHERE nombre='".$nombre."'  AND inicial BETWEEN '".$fechainicial."' AND '".$fechafinal."' ";
 $fecha = sqlsrv_query($SQL, $fechas);
@@ -101,6 +127,13 @@ $objPHPExcel->getActiveSheet()->setCellValue('K6', 'TIEMPO TOTAL PRODUCCIDO');
 $objPHPExcel->getActiveSheet()->setCellValue('L6', 'TOTAL TIEMPO DE PARO');
 $objPHPExcel->getActiveSheet()->setCellValue('H6', 'TIEMPO TOTAL ESTIMADO');
 
+$objPHPExcel->getActiveSheet()->setCellValue('F6', 'EFICIENCIA TOTAL');
+ $objPHPExcel->getActiveSheet()->setCellValue('F7' ,strval($EFICIENCIAGLOBAL)."%" );
+
+while ($row = sqlsrv_fetch_array($filtro,SQLSRV_FETCH_ASSOC)){ 
+  $cantidad =  $row['cantidad'];
+  $objPHPExcel->getActiveSheet()->setCellValue('F6' ,strval($cantidad) );
+   }
 while($row = sqlsrv_fetch_array($ensayo, SQLSRV_FETCH_ASSOC)) {
   $TIMEPAROSUM= $row["tiempo_descanso"] ; 
 
@@ -165,7 +198,7 @@ while ($row = sqlsrv_fetch_array($resultado,SQLSRV_FETCH_ASSOC)){
   $objPHPExcel->getActiveSheet()->setCellValue('B'.$actividad ,strval($NUMEROOP) );
 
   $objPHPExcel->getActiveSheet()->setCellValue('C'.$actividad ,strval($row['tarea']) );
-  $objPHPExcel->getActiveSheet()->setCellValue('H'.$actividad ,strval($row['eficencia']));
+  $objPHPExcel->getActiveSheet()->setCellValue('H'.$actividad ,strval($row['eficencia'])."%");
 
     $actividad++;
   }
@@ -197,4 +230,4 @@ $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 $objWriter->save('php://output');
 
 
-exit; 
+exit; /**/

@@ -37,7 +37,7 @@
 				<form class="login100-form validate-form" action="validar" method="POST" autocomplete="off">
 					{{ csrf_field() }}
 					<span class="login100-form-logo">
-						<img src="img/mainco.jpg" height="60px">
+						<img src="img/mainco.jpg" height="84px">
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27">

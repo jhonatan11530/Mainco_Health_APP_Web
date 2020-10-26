@@ -1,8 +1,8 @@
 
     <?php
-    date_default_timezone_set("America/Bogota");
+    date_default_timezone_set('America/Bogota');
     error_reporting(0);
-    $dato = $_REQUEST["orden"];
+    $dato = $_REQUEST['orden'];
 
     $serverName = 'srv2008';
     $connectionInfo = array('Database' => 'proyecto', 'UID' => 'proyecto', 'PWD' => '12345', 'CharacterSet' => 'UTF-8');
@@ -36,7 +36,7 @@
 
         echo "<center>
         <div class='col-md-6 mb-3'>
-        <label class='font-weight-bold text-dark'>ACTUALIZADO HACE : " . date("h:i:s A") . " (HORA SUJETA AL SERVIDOR)</label>
+        <label class='font-weight-bold text-dark'>ACTUALIZADO HACE : " . date('h:i:s A') . " (HORA SUJETA AL SERVIDOR)</label>
         </div>
         <h2 class='mb-2'>NUMERO DE ORDEN DE PRODUCCION</h2>
         <div class='h1 fw-bold text-primary'>" . $dato . "</div>
@@ -71,7 +71,7 @@
         <div class='col-md-4'>
             <div class='card'>
                 <div class='card-body pb-0'>
-                    <div class='h1 fw-bold float-right text-warning'>" . $cantioperario . "</div>
+                    <div class='h1 fw-bold float-right text-warning'>". $cantioperario . "</div>
                     <h2 class='mb-2'>Total Produccido</h2>
                     <p class='text-muted'>total cantidad produccido por operario</p>
                     <div class='pull-in sparkline-fix'>
@@ -86,16 +86,17 @@
 
         echo "<span class='d-block p-2 bg-primary text-white'>
                 <center>
-                    <h3>INFORMACION EN TIEMPO REAL DE LA ORDEN DE PRODUCCION</h3>
+                <h3>INFORMACION EN TIEMPO REAL DE LO PRODUCCIDO</h3>
                 </center>
             </span>";
 
         echo "<center>
         <div class='col-md-6 mb-3'>
-        <label class='font-weight-bold text-dark'>ACTUALIZADO HACE : " . date("h:i:s A") . " (HORA SUJETA AL SERVIDOR)</label>
+        <label class='font-weight-bold text-dark'>ACTUALIZADO HACE : " . date('h:i:s A') . " (HORA SUJETA AL SERVIDOR)</label>
         </div>
         <h2 class='mb-2'>! NO DATOS DE LA ORDEN DE PRODUCCION !</h2>
-        <div class='h1 fw-bold text-primary'>" . $dato . "</div>
+        <h2 class='mb-2'>! DEBE INGRESAR EL N° DE LA ORDEN DE PRODUCCION!</h2>
+        <div class='h1 fw-bold text-primary'>". $dato . "</div>
         </center>";
 
         echo "<div class='row'>
@@ -137,3 +138,4 @@
         </div>
         </div>";
     }
+   
