@@ -420,7 +420,8 @@
 			document.getElementById("demo").style.fontSize = "18px";
 			// If the count down is over, write some text 
 
-			if (hours=0 && minutes <= 20) {
+			if (hours=0 && minutes < 20) {
+				clearInterval(x);
 				$('#exampleModalCenter').modal('show');
 			}
 
@@ -441,7 +442,7 @@
 
 			// Update the count down every 1 second
 			var x = setInterval(function() {
-				clearInterval(x);
+				
 				// Get today's date and time
 				var now = new Date().getTime();
 
@@ -459,6 +460,10 @@
 				document.getElementById("demo").style.color = "#000000";
 				document.getElementById("demo").style.fontSize = "18px";
 
+				if (hours=0 && minutes < 20) {
+				clearInterval(x);
+				$('#exampleModalCenter').modal('show');
+			}
 			}, 1000);
 		}
 
