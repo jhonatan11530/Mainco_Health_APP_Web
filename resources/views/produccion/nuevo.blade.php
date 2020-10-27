@@ -45,16 +45,16 @@
                          $serverName = "srv2008";
                          $connectionInfo = array("Database" => "proyecto", "UID" => "proyecto", "PWD" => "12345", "CharacterSet" => "UTF-8");
                          $mysqli = sqlsrv_connect($serverName, $connectionInfo);
-                         $sql_statement = "SELECT MAX(id) FROM proyecto.produccion";
+                         $sql_statement = "SELECT MAX(autoincrement)+1 as id FROM proyecto.produccion";
                          $result = sqlsrv_query($mysqli, $sql_statement);
                          while ($e = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-                              $salida = $e;
+                              $salida = $e["id"];
                          }
 
                          ?>
 
                          <div class="form-group">
-                              <input class="form-control" type="hidden" name="id" value="{{$produccion->autoincrement}}" readonly />
+                              <input class="form-control" type="hidden" name="id" value="<?php echo $salida; ?>" readonly />
                          </div>
 
                          <div class="form-group">
