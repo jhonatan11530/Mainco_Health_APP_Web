@@ -67,8 +67,8 @@ if ($name == null) {
     $objPHPExcel->getActiveSheet()->setCellValue('D' . $fila, strval($row['tiempo_habil']));
     $objPHPExcel->getActiveSheet()->setCellValue('E' . $fila, strval($row['timepo_estimado']));
     $objPHPExcel->getActiveSheet()->setCellValue('F' . $fila, strval($row['tiempo_produccido']));
-    $objPHPExcel->getActiveSheet()->setCellValue('G' . $fila, strval($row['eficiencia']));
-    $objPHPExcel->getActiveSheet()->setCellValue('H' . $fila, strval($row['produccion']));
+    $objPHPExcel->getActiveSheet()->setCellValue('G' . $fila, strval($row['eficiencia'])."%");
+    $objPHPExcel->getActiveSheet()->setCellValue('H' . $fila, strval($row['produccion'])."%");
 
 
     $fila++;

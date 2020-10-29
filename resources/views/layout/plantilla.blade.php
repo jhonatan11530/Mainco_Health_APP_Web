@@ -6,7 +6,7 @@
 	<title>MAINCO HEALTH CARE</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="{{url('img/icon.png')}}" type="image/png" />
-	<script src="https://momentjs.com/downloads/moment.min.js"></script>
+	<script src="https://momentjs.com/downloads/moment.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
 
@@ -20,11 +20,7 @@
 			},
 			custom: {
 				"families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"],
-				{
-					{
-						url('css/fonts.min.css')
-					}
-				}
+						
 			},
 			active: function() {
 				sessionStorage.fonts = true;
@@ -34,6 +30,7 @@
 
 
 	<!-- CSS Files -->
+	<link rel="stylesheet" href="{{url('css/fonts.min.css')}}">
 	<link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{url('css/atlantis.min.css')}}">
 	<!-- CSS Just for demo purpose, don't include it in your project -->

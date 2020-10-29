@@ -70,8 +70,8 @@ if ($Radio == 86 && isset($fechainicial) && isset($fechafinal)) {
     $objPHPExcel->getActiveSheet()->setCellValue('D' . $fila, $tiempo_habil);
     $objPHPExcel->getActiveSheet()->setCellValue('E' . $fila, $timepo_estimado);
     $objPHPExcel->getActiveSheet()->setCellValue('F' . $fila, $tiempo_produccido);
-    $objPHPExcel->getActiveSheet()->setCellValue('G' . $fila, $eficiencia);
-    $objPHPExcel->getActiveSheet()->setCellValue('H' . $fila, $produccion);
+    $objPHPExcel->getActiveSheet()->setCellValue('G' . $fila, $eficiencia."%");
+    $objPHPExcel->getActiveSheet()->setCellValue('H' . $fila, $produccion."%");
 
     $fila++;
   }
@@ -153,8 +153,8 @@ if ($Radio == 85 && isset($fechainicial) && isset($fechafinal)) {
     $objPHPExcel->getActiveSheet()->setCellValue('D' . $fila1, $tiempo_habil);
     $objPHPExcel->getActiveSheet()->setCellValue('E' . $fila1, $timepo_estimado);
     $objPHPExcel->getActiveSheet()->setCellValue('F' . $fila1, $tiempo_produccido);
-    $objPHPExcel->getActiveSheet()->setCellValue('G' . $fila1, $eficiencia);
-    $objPHPExcel->getActiveSheet()->setCellValue('H' . $fila1, $produccion);
+    $objPHPExcel->getActiveSheet()->setCellValue('G' . $fila1, $eficiencia."%");
+    $objPHPExcel->getActiveSheet()->setCellValue('H' . $fila1, $produccion."%");
 
     $fila1++;
   }
@@ -232,8 +232,8 @@ if ($Radio == 200 && isset($fechainicial) && isset($fechafinal)) {
     $objPHPExcel->getActiveSheet()->setCellValue('D' . $fila2, $tiempo_habil);
     $objPHPExcel->getActiveSheet()->setCellValue('E' . $fila2, $timepo_estimado);
     $objPHPExcel->getActiveSheet()->setCellValue('F' . $fila2, $tiempo_produccido);
-    $objPHPExcel->getActiveSheet()->setCellValue('G' . $fila2, $eficiencia);
-    $objPHPExcel->getActiveSheet()->setCellValue('H' . $fila2, $produccion);
+    $objPHPExcel->getActiveSheet()->setCellValue('G' . $fila2, $eficiencia."%");
+    $objPHPExcel->getActiveSheet()->setCellValue('H' . $fila2, $produccion."%");
     $fila2++;
   }
 

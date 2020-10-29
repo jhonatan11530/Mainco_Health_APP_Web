@@ -46,7 +46,7 @@
                               {!! Form::open(['url' => 'produccion', 'files' => true]) !!}
                               <div class="form-group">
                                    {!! Form::label('Nombre', 'Asignar numero op :') !!}
-                                   <input class="form-control" name="numero_id" value="DEBE SELECCIONAR EL ITEM PRIMERO" readonly />
+                                   <input class="form-control" value="DEBE SELECCIONAR EL ITEM PRIMERO" readonly />
 
 
                               </div>

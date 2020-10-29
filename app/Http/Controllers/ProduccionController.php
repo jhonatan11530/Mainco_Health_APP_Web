@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Produccion;
-use App\Operador;
+use App\Tarea;
 use Validator;
 class ProduccionController extends Controller
 {
@@ -31,7 +31,6 @@ class ProduccionController extends Controller
     public function create()
     {
 
-        $numero_id = Operador::all();
         $produccion = Produccion::all();
         return view('produccion.crear', compact('numero_id','produccion'));
     }
@@ -94,8 +93,9 @@ class ProduccionController extends Controller
 
     public function now($id)
     {
+        $tarea = Tarea::find($id);
         $produccion = Produccion::find($id);
-        return view('produccion.nuevo', compact('produccion'));
+        return view('produccion.nuevo', compact('produccion','tarea'));
     }
 
     /**
