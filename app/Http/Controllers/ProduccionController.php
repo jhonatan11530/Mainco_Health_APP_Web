@@ -93,9 +93,8 @@ class ProduccionController extends Controller
 
     public function now($id)
     {
-        $tarea = Tarea::find($id);
         $produccion = Produccion::find($id);
-        return view('produccion.nuevo', compact('produccion','tarea'));
+        return view('produccion.nuevo', compact('produccion'));
     }
 
     /**
