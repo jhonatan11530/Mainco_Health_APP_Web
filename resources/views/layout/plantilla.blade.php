@@ -6,27 +6,8 @@
 	<title>MAINCO HEALTH CARE</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="{{url('img/icon.png')}}" type="image/png" />
-	<script src="https://momentjs.com/downloads/moment.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
-
-	<!-- Fonts and icons -->
-	<script src="{{url('js/plugin/webfont/webfont.min.js')}}"></script>
-
-	<script>
-		WebFont.load({
-			google: {
-				"families": ["Lato:300,400,700,900"]
-			},
-			custom: {
-				"families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"],
-						
-			},
-			active: function() {
-				sessionStorage.fonts = true;
-			}
-		});
-	</script>
 
 
 	<!-- CSS Files -->
@@ -362,28 +343,8 @@
 	<!-- jQuery Scrollbar -->
 	<script src="{{url('js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
 
-
-	<!-- Chart JS -->
-	<script src="{{url('js/plugin/chart.js/chart.min.js')}}"></script>
-
-	<!-- jQuery Sparkline -->
-	<script src="{{url('js/plugin/jquery.sparkline/jquery.sparkline.min.js')}}"></script>
-
-	<!-- Chart Circle -->
-	<script src="{{url('js/plugin/chart-circle/circles.min.js')}}"></script>
-
 	<!-- Datatables -->
 	<script src="{{url('js/plugin/datatables/datatables.min.js')}}"></script>
-
-	<!-- Bootstrap Notify -->
-	<script src="{{url('js/plugin/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
-
-	<!-- jQuery Vector Maps -->
-	<script src="{{url('js/plugin/jqvmap/jquery.vmap.min.js')}}"></script>
-	<script src="{{url('js/plugin/jqvmap/maps/jquery.vmap.world.js')}}"></script>
-
-	<!-- Sweet Alert -->
-	<script src="{{url('js/plugin/sweetalert/sweetalert.min.js')}}"></script>
 
 	<!-- Atlantis JS -->
 	<script src="{{url('js/atlantis.min.js')}}"></script>
@@ -391,6 +352,8 @@
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="{{url('js/setting-demo.js')}}"></script>
 
+	<!-- Fonts and icons -->
+	<script src="{{url('js/plugin/webfont/webfont.min.js')}}"></script>
 
 	<script>
 		// Set the date we're counting down to

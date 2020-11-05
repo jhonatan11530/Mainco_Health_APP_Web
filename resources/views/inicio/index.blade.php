@@ -1,8 +1,4 @@
 @extends('layout/plantilla')
-<script src="{{url('js/core/jquery.3.2.1.min.js')}}"></script>
-<script src="{{url('js/jquery.dataTables.min.js')}}"></script>
-<link rel="stylesheet" href="{{url('css/jquery.dataTables.min.css')}}">
-
 @section('content')
 
 <div class="panel-header bg-primary-gradient">

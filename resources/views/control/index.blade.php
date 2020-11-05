@@ -1,7 +1,6 @@
 @extends('layout/plantilla')
 <script src="{{url('js/core/jquery.3.2.1.min.js')}}"></script>
 <script src="{{url('js/jquery.dataTables.min.js')}}"></script>
-<script src="https://momentjs.com/downloads/moment.js"></script>
 
 
 <script>
