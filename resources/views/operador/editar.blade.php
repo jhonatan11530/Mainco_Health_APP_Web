@@ -18,7 +18,8 @@
         <div class="col-md-6 mx-auto">
             <div class="card full-height">
                 <div class="card-body">
-                    {!! Form::model($operador, ['method' => 'PATCH', 'route' => ['operador.update', $operador->id], 'files' => true ]) !!}
+                    {!! Form::model($operador, ['method' => 'PATCH', 'route' => ['operador.update', $operador->id],
+                    'files' => true ]) !!}
 
                     <div class="form-group">
                         {!! Form::label('CAMBIAR ID DEL OPERADOR', 'CAMBIAR ID DEL OPERADOR :') !!}

@@ -13,143 +13,143 @@
 
 <body onload="ValidarBOTTON()">
 
-	<script>
-		jQuery(document).ready(function($) {
-			$('#Select').select2();
-		});
+    <script>
+    jQuery(document).ready(function($) {
+        $('#Select').select2();
+    });
 
-		jQuery(document).ready(function($) {
-			$('#OPERADOR').select2();
-		});
-		jQuery(document).ready(function($) {
-			$('#OPERADORES').select2();
-		});
+    jQuery(document).ready(function($) {
+        $('#OPERADOR').select2();
+    });
+    jQuery(document).ready(function($) {
+        $('#OPERADORES').select2();
+    });
 
-		function valida() {
-			document.getElementById("nameoperador").innerHTML = "";
-			var paro = document.getElementById('paro').value;
-			var paros = document.getElementById('paros').value;
+    function valida() {
+        document.getElementById("nameoperador").innerHTML = "";
+        var paro = document.getElementById('paro').value;
+        var paros = document.getElementById('paros').value;
 
-			window.location.href = window.location.href + "?ini=" + paro + "&fin=" + paros;
-
-
-		}
+        window.location.href = window.location.href + "?ini=" + paro + "&fin=" + paros;
 
 
-		function ValidarBOTTON() {
+    }
 
 
-			// INFORME GENERAL POR OPERARIOS
-			var rango = document.getElementById('rango').value;
-			var rangos = document.getElementById('rangos').value;
-
-			if (rango == "SELECCIONE RANGO DE FECHA INICIAL" && rangos == "SELECCIONE RANGO DE FECHA FINAL") {
-				document.getElementById("Boton").disabled = true;
-
-			}
-			if (rango != "SELECCIONE RANGO DE FECHA INICIAL" && rangos != "SELECCIONE RANGO DE FECHA FINAL") {
-				document.getElementById("Boton").disabled = false;
-
-			}
-
-			// INFORME DETALLADO + TIEMPO DE PARO
-			var paro = document.getElementById('paro').value;
-			var paros = document.getElementById('paros').value;
-
-			if (paro == "SELECCIONE RANGO DE FECHA INICIAL" && paros == "SELECCIONE RANGO DE FECHA FINAL") {
-				document.getElementById("validar").disabled = true;
-				document.getElementById("Botonparo").disabled = true;
-				document.getElementById("clear").style.display = "none";
-			}
-			if (paro != "SELECCIONE RANGO DE FECHA INICIAL" && paros != "SELECCIONE RANGO DE FECHA FINAL") {
-				document.getElementById("validar").disabled = false;
-
-				var URLsearch = window.location.search;
-				if (URLsearch) {
-					alert("SE HA FILTRADO LA INFORMACION");
-
-					document.getElementById("validar").style.display = "none";
-					document.getElementById("clear").style.display = "visible";
-
-				}
-
-			}
+    function ValidarBOTTON() {
 
 
-			// INFORME CONSOLIDADO 
-			var operadores = document.getElementById('OPERADORES').value;
+        // INFORME GENERAL POR OPERARIOS
+        var rango = document.getElementById('rango').value;
+        var rangos = document.getElementById('rangos').value;
 
-			if (operadores == "SELECCIONE EL OPERADOR") {
-				document.getElementById("Botton").disabled = true;
-			}
-			if (operadores != "SELECCIONE EL OPERADOR") {
-				document.getElementById("Botton").disabled = false;
+        if (rango == "SELECCIONE RANGO DE FECHA INICIAL" && rangos == "SELECCIONE RANGO DE FECHA FINAL") {
+            document.getElementById("Boton").disabled = true;
 
-			}
+        }
+        if (rango != "SELECCIONE RANGO DE FECHA INICIAL" && rangos != "SELECCIONE RANGO DE FECHA FINAL") {
+            document.getElementById("Boton").disabled = false;
 
-			// INFORME CONSOLIDADO POR FECHA
-			var text = document.getElementById('Selec').value;
-			var texts = document.getElementById('Selecx').value;
+        }
 
-			if (text == "SELECCIONE RANGO DE FECHA INICIAL" && texts == "SELECCIONE RANGO DE FECHA FINAL") {
-				document.getElementById("BTN").disabled = true;
-			}
-			if (text != "SELECCIONE RANGO DE FECHA INICIAL" && texts != "SELECCIONE RANGO DE FECHA FINAL") {
-				document.getElementById("BTN").disabled = false;
+        // INFORME DETALLADO + TIEMPO DE PARO
+        var paro = document.getElementById('paro').value;
+        var paros = document.getElementById('paros').value;
 
-			}
+        if (paro == "SELECCIONE RANGO DE FECHA INICIAL" && paros == "SELECCIONE RANGO DE FECHA FINAL") {
+            document.getElementById("validar").disabled = true;
+            document.getElementById("Botonparo").disabled = true;
+            document.getElementById("clear").style.display = "none";
+        }
+        if (paro != "SELECCIONE RANGO DE FECHA INICIAL" && paros != "SELECCIONE RANGO DE FECHA FINAL") {
+            document.getElementById("validar").disabled = false;
 
-			// INFORME CONSOLIDADO POR FECHA
-			var text = document.getElementById('errorfatal').value;
+            var URLsearch = window.location.search;
+            if (URLsearch) {
+                alert("SE HA FILTRADO LA INFORMACION");
 
-			if (text == "SELECCIONE LA FECHA QUE OCURRIO EL ERROR") {
-				document.getElementById("ERRORES").disabled = true;
-			}
-			if (text != "SELECCIONE LA FECHA QUE OCURRIO EL ERROR") {
-				document.getElementById("ERRORES").disabled = false;
+                document.getElementById("validar").style.display = "none";
+                document.getElementById("clear").style.display = "visible";
 
-			}
-		}
-	</script>
-	<div class="panel-header bg-primary-gradient">
-		<div class="page-inner py-5">
-			<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-				<div>
-					<h2 class="text-white pb-2 fw-bold">EXPORTAR DATOS Y GENERAR INFORMES</h2>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="page-inner mt--5">
-		<div class="col mt--4">
-			<div class="col-md-12">
-				<div class="card ">
-					<div class="card-body">
-						<div class="table-responsive">
+            }
 
-							<div id="app">
-								@include('Mensaje')
+        }
 
 
-								@yield('content')
-							</div>
-							<table id="multi-filter-select" class="display table table-striped-bg-*states ">
-								@if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
-								<thead class="bg-primary text-white">
-									<tr>
-										<div class="table-responsive">
-									<tr>
-										<th>EXPORTAR POR O.P VISUALIZAR ACTIVIDADES INDIVIDUALES</th>
-										<th>EXPORTAR DATOS </th>
-									</tr>
+        // INFORME CONSOLIDADO 
+        var operadores = document.getElementById('OPERADORES').value;
 
-								</thead>
-								<tbody>
+        if (operadores == "SELECCIONE EL OPERADOR") {
+            document.getElementById("Botton").disabled = true;
+        }
+        if (operadores != "SELECCIONE EL OPERADOR") {
+            document.getElementById("Botton").disabled = false;
+
+        }
+
+        // INFORME ERROR 
+        var errormalo = document.getElementById('error').value;
+
+        if (errormalo == "SELECCIONE LA FECHA QUE OCURRIO EL ERROR") {
+            document.getElementById("ERRORES").disabled = true;
+        }
+        if (errormalo != "SELECCIONE LA FECHA QUE OCURRIO EL ERROR") {
+            document.getElementById("ERRORES").disabled = false;
+
+        }
+
+        // INFORME GESTION HUMANA 
+        var HUMANA = document.getElementById('GH').value;
+
+        if (HUMANA == "SELECCIONE LA FECHA DE INGRESO A G.H") {
+            document.getElementById("BTNGH").disabled = true;
+        }
+        if (HUMANA != "SELECCIONE LA FECHA DE INGRESO A G.H") {
+            document.getElementById("BTNGH").disabled = false;
+
+        }
+
+    }
+    </script>
+    <div class="panel-header bg-primary-gradient">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">EXPORTAR DATOS Y GENERAR INFORMES</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-inner mt--5">
+        <div class="col mt--4">
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <div id="app">
+                                @include('Mensaje')
+
+
+                                @yield('content')
+                            </div>
+                            <table id="multi-filter-select" class="display table table-striped-bg-*states ">
+                                @if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
+                                <thead class="bg-primary text-white">
+                                    <tr>
+                                        <div class="table-responsive">
+                                    <tr>
+                                        <th>EXPORTAR POR O.P VISUALIZAR ACTIVIDADES INDIVIDUALES</th>
+                                        <th>EXPORTAR DATOS </th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
 
 
 
-									<tr>
-										<?php
+                                    <tr>
+                                        <?php
 										$serverName = "srv2008";
 										$connectionInfo = array("Database" => "proyecto", "UID" => "proyecto", "PWD" => "12345", "CharacterSet" => "UTF-8");
 										$mysqli = sqlsrv_connect($serverName, $connectionInfo);
@@ -174,112 +174,119 @@
 
 										?>
 
-										<form action="../exportar.php" method="post">
+                                        <form action="../exportar.php" method="post">
 
-											<td>
+                                            <td>
 
-												<div class="form-group">
-													<select class="form-control" name="fechaUNO" id="rango" onchange="ValidarBOTTON()">
-														<option selected="selected" disabled>SELECCIONE RANGO DE FECHA INICIAL</option>
-														<?php foreach ($arreglito as $key) { ?>
-															<option name="fechaUNO"><?php echo $key; ?></option>
-														<?php } ?>
-													</select>
-												</div>
+                                                <div class="form-group">
+                                                    <select class="form-control" name="fechaUNO" id="rango"
+                                                        onchange="ValidarBOTTON()">
+                                                        <option selected="selected" disabled>SELECCIONE RANGO DE FECHA
+                                                            INICIAL</option>
+                                                        <?php foreach ($arreglito as $key) { ?>
+                                                        <option name="fechaUNO"><?php echo $key; ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
 
-												<div class="form-group">
-													<select class="form-control" name="fechaDOS" id="rangos" onchange="ValidarBOTTON()">
-														<option selected="selected" disabled>SELECCIONE RANGO DE FECHA FINAL</option>
-														<?php foreach ($arreglitos as $keys) { ?>
-															<option name="fechaDOS"><?php echo $keys; ?></option>
-														<?php } ?>
-													</select>
-												</div>
-												<div class="form-group">
-													<center>
-														<h3><b>CONDICION DE FILTRO</b></h3>
-													</center>
-												</div>
-												<div class="form-check form-check-inline">
-													<input type="radio" name="radiobutton" value="86" required>
-													<label class="form-check-label">EFICIENCIA MAYOR 85%</label>
-												</div>
-												<div class="form-check form-check-inline">
-													<input type="radio" name="radiobutton" value="85" required>
-													<label class="form-check-label">EFICIENCIA MENOR 85%</label>
-												</div>
-												<div class="form-check form-check-inline">
-													<input type="radio" name="radiobutton" value="200" required>
-													<label class="form-check-label">TRAER TODO</label>
-												</div>
-
-
-											</td>
-
-											<td>
-												<button id="Boton" class="btn btn-primary">GENERAR INFORME <i class="fas fa-cloud-download-alt"></i></button>
-											</td>
-											</td>
-
-										</form>
+                                                <div class="form-group">
+                                                    <select class="form-control" name="fechaDOS" id="rangos"
+                                                        onchange="ValidarBOTTON()">
+                                                        <option selected="selected" disabled>SELECCIONE RANGO DE FECHA
+                                                            FINAL</option>
+                                                        <?php foreach ($arreglitos as $keys) { ?>
+                                                        <option name="fechaDOS"><?php echo $keys; ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <center>
+                                                        <h3><b>CONDICION DE FILTRO</b></h3>
+                                                    </center>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input type="radio" name="radiobutton" value="86" required>
+                                                    <label class="form-check-label">EFICIENCIA MAYOR 85%</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input type="radio" name="radiobutton" value="85" required>
+                                                    <label class="form-check-label">EFICIENCIA MENOR 85%</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input type="radio" name="radiobutton" value="200" required>
+                                                    <label class="form-check-label">TRAER TODO</label>
+                                                </div>
 
 
-						</div>
-						</tbody>
-						@endif
-						@if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
-						<thead class="bg-primary text-white">
-							<tr>
-								<th>EXPORTAR INFORME DETALLADO POR OPERADOR</th>
-								<th>EXPORTAR DATOS </th>
-							</tr>
-						</thead>
+                                            </td>
 
-						<tbody>
+                                            <td>
+                                                <button id="Boton" class="btn btn-primary">GENERAR INFORME <i
+                                                        class="fas fa-cloud-download-alt"></i></button>
+                                            </td>
+                                            </td>
+
+                                        </form>
 
 
+                        </div>
+                        </tbody>
+                        @endif
+                        @if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th>EXPORTAR INFORME DETALLADO POR OPERADOR</th>
+                                <th>EXPORTAR DATOS </th>
+                            </tr>
+                        </thead>
 
-							<tr>
-								<?php
+                        <tbody>
+
+
+
+                            <tr>
+                                <?php
 								if (isset($_REQUEST["ini"]) && isset($_REQUEST["fin"])) {
 									$inicial = $_REQUEST["ini"];
 									$final = $_REQUEST["fin"];
 								}
 								?>
-								<form action="../detallado.php" method="post">
+                                <form action="../detallado.php" method="post">
 
-									<td>
+                                    <td>
 
-										<div class="form-group">
-											<select class="form-control" name="fechaUNO" id="paro" onchange="ValidarBOTTON()">
-												<?php if (isset($inicial)) {
+                                        <div class="form-group">
+                                            <select class="form-control" name="fechaUNO" id="paro"
+                                                onchange="ValidarBOTTON()">
+                                                <?php if (isset($inicial)) {
 													echo "<option value='" . $inicial . "' selected>" . $inicial . "</option>";
 												} else {
 													echo "<option selected disabled>SELECCIONE RANGO DE FECHA INICIAL</option>";
 												} ?>
 
-												<?php foreach ($arreglito as $key) { ?>
-													<option name="fechaUNO"><?php echo $key; ?></option>
-												<?php } ?>
-											</select>
-										</div>
+                                                <?php foreach ($arreglito as $key) { ?>
+                                                <option name="fechaUNO"><?php echo $key; ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
 
-										<div class="form-group">
-											<select class="form-control" name="fechaDOS" id="paros" onchange="ValidarBOTTON()">
-												<?php if (isset($final)) {
+                                        <div class="form-group">
+                                            <select class="form-control" name="fechaDOS" id="paros"
+                                                onchange="ValidarBOTTON()">
+                                                <?php if (isset($final)) {
 													echo "<option value='" . $final . "' selected>" . $final . "</option>";
 												} else {
 													echo "<option selected disabled>SELECCIONE RANGO DE FECHA FINAL</option>";
 												} ?>
-												<?php foreach ($arreglitos as $keys) { ?>
-													<option name="fechaDOS"><?php echo $keys; ?></option>
-												<?php } ?>
-											</select>
-										</div>
+                                                <?php foreach ($arreglitos as $keys) { ?>
+                                                <option name="fechaDOS"><?php echo $keys; ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
 
-										<div class="form-group">
-											<select name="nombre" id="nameoperador" class="form-control">
-												<?php if (isset($inicial) && isset($final)) {
+                                        <div class="form-group">
+                                            <select name="nombre" id="nameoperador" class="form-control">
+                                                <?php if (isset($inicial) && isset($final)) {
 
 													$serverName = "srv2008";
 													$connectionInfo = array("Database" => "proyecto", "UID" => "proyecto", "PWD" => "12345", "CharacterSet" => "UTF-8");
@@ -295,43 +302,45 @@
 													echo "<option selected='selected' disabled>ESPERANDO FILTRO POR FECHA PARA MOSTRAR LOS OPERADORES</option>";
 												} ?>
 
-											</select>
-										</div>
+                                            </select>
+                                        </div>
 
 
-					</div>
+                    </div>
 
 
-				</div>
+                </div>
 
-				</td>
+                </td>
 
-				<td>
-					<button id="Botonparo" class="btn btn-primary">GENERAR INFORME <i class="fas fa-cloud-download-alt"></i></button><br><br>
-					</form>
-					<button id="validar" onclick="valida()" class="btn btn-primary">Validar Informacion</button>
-					<a href="http://192.168.20.9:8080/mainco/wps/exportar">
-						<button id="clear" class="btn btn-primary">LIMPIAR REGISTROS <i class="fas fa-trash-alt"></i></button>
-					</a>
-				</td>
-				</td>
+                <td>
+                    <button id="Botonparo" class="btn btn-primary">GENERAR INFORME <i
+                            class="fas fa-cloud-download-alt"></i></button><br><br>
+                    </form>
+                    <button id="validar" onclick="valida()" class="btn btn-primary">Validar Informacion</button>
+                    <a href="http://192.168.20.9:8080/mainco/wps/exportar">
+                        <button id="clear" class="btn btn-primary">LIMPIAR REGISTROS <i
+                                class="fas fa-trash-alt"></i></button>
+                    </a>
+                </td>
+                </td>
 
-			</div>
-			</tbody>
+            </div>
+            </tbody>
 
-			<thead class="bg-primary text-white">
-				<tr>
-					<th>EXPORTAR CONSOLIDADO POR OPERADOR</th>
-					<th>EXPORTAR DATOS </th>
-				</tr>
-			</thead>
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th>EXPORTAR CONSOLIDADO POR OPERADOR</th>
+                    <th>EXPORTAR DATOS </th>
+                </tr>
+            </thead>
 
-			<tbody>
+            <tbody>
 
 
 
-				<tr>
-					<?php
+                <tr>
+                    <?php
 					$serverName = "srv2008";
 					$connectionInfo = array("Database" => "proyecto", "UID" => "proyecto", "PWD" => "12345", "CharacterSet" => "UTF-8");
 					$mysqli = sqlsrv_connect($serverName, $connectionInfo);
@@ -345,50 +354,50 @@
 
 					?>
 
-					<form action="../consolidado.php" method="post">
+                    <form action="../consolidado.php" method="post">
 
-						<td>
-							<div class="form-group">
-								<select class="form-control" name="nombre" id="OPERADORES" onchange="ValidarBOTTON()">
-									<option selected="selected" disabled>SELECCIONE EL OPERADOR</option>
-									<?php foreach ($nombre as $nom) { ?>
-										<option name="nombre"><?php echo $nom; ?></option>
-									<?php } ?>
-								</select>
-							</div>
-
-
-		</div>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" name="nombre" id="OPERADORES" onchange="ValidarBOTTON()">
+                                    <option selected="selected" disabled>SELECCIONE EL OPERADOR</option>
+                                    <?php foreach ($nombre as $nom) { ?>
+                                    <option name="nombre"><?php echo $nom; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
 
 
-	</div>
-
-	</td>
-
-	<td>
-		<button id="Botton" class="btn btn-primary">GENERAR INFORME <i class="fas fa-cloud-download-alt"></i></button>
-	</td>
-	</td>
-
-	</form>
-
-	</div>
-	</tbody>
-	@endif
-	@if (Auth::user()->rol == 1)
-	<thead class="bg-primary text-white">
-		<tr>
-			<th>EXPORTAR DATOS DE ERRORES</th>
-			<th>EXPORTAR DATOS </th>
-		</tr>
-	</thead>
-
-	<tbody>
+        </div>
 
 
+    </div>
 
-		<tr>
-			<?php
+    </td>
+
+    <td>
+        <button id="Botton" class="btn btn-primary">GENERAR INFORME <i class="fas fa-cloud-download-alt"></i></button>
+    </td>
+    </td>
+
+    </form>
+
+    </div>
+    </tbody>
+    @endif
+    @if (Auth::user()->rol == 1)
+    <thead class="bg-primary text-white">
+        <tr>
+            <th>EXPORTAR DATOS DE ERRORES</th>
+            <th>EXPORTAR DATOS </th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+
+
+        <tr>
+            <?php
 			$serverName = "srv2008";
 			$connectionInfo = array("Database" => "proyecto", "UID" => "proyecto", "PWD" => "12345", "CharacterSet" => "UTF-8");
 			$mysqli = sqlsrv_connect($serverName, $connectionInfo);
@@ -401,41 +410,42 @@
 			}
 			?>
 
-			<form action="../error.php" method="post">
+            <form action="../error.php" method="post">
 
-				<td>
-					<div class="form-group">
-						<select class="form-control" name="ERROR" id="errorfatal" onchange="ValidarBOTTON()">
-							<option selected="selected" disabled>SELECCIONE LA FECHA QUE OCURRIO EL ERROR</option>
-							<?php foreach ($error as $key) { ?>
-								<option name="errorfatal"><?php echo $key; ?></option>
-							<?php } ?>
-						</select>
-					</div>
-				</td>
+                <td>
+                    <div class="form-group">
+                        <select class="form-control" name="ERROR" id="error" onchange="ValidarBOTTON()">
+                            <option selected="selected" disabled>SELECCIONE LA FECHA QUE OCURRIO EL ERROR</option>
+                            <?php foreach ($error as $key) { ?>
+                            <option name="errorfatal"><?php echo $key; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </td>
 
-				<td>
-					<button id="ERRORES" class="btn btn-primary">GENERAR INFORME <i class="fas fa-cloud-download-alt"></i></button>
-				</td>
-				</td>
+                <td>
+                    <button id="ERRORES" class="btn btn-primary">GENERAR INFORME <i
+                            class="fas fa-cloud-download-alt"></i></button>
+                </td>
+                </td>
 
-			</form>
+            </form>
 
-			</div>
-	</tbody>
-	@endif
-	@if ((Auth::user()->rol == 1) or (Auth::user()->rol == 4))
-	<thead class="bg-primary text-white">
-		<tr>
-			<th>EXPORTAR DATOS DE INGRESO A GESTION HUMANA</th>
-			<th>EXPORTAR DATOS </th>
-		</tr>
-	</thead>
+            </div>
+    </tbody>
+    @endif
+    @if ((Auth::user()->rol == 1) or (Auth::user()->rol == 4))
+    <thead class="bg-primary text-white">
+        <tr>
+            <th>EXPORTAR DATOS DE INGRESO A GESTION HUMANA</th>
+            <th>EXPORTAR DATOS </th>
+        </tr>
+    </thead>
 
-	<tbody>
+    <tbody>
 
-		<tr>
-			<?php
+        <tr>
+            <?php
 			$serverName = "srv2008";
 			$connectionInfo = array("Database" => "proyecto", "UID" => "proyecto", "PWD" => "12345", "CharacterSet" => "UTF-8");
 			$mysqli = sqlsrv_connect($serverName, $connectionInfo);
@@ -448,36 +458,37 @@
 			}
 			?>
 
-			<form action="../gestion.php" method="post">
+            <form action="../gestion.php" method="post">
 
-				<td>
-					<div class="form-group">
-						<select class="form-control" name="HUMANA" onchange="ValidarBOTTON()">
-							<option selected="selected" disabled>SELECCIONE LA FECHA</option>
-							<?php foreach ($error as $key) { ?>
-								<option><?php echo $key; ?></option>
-							<?php } ?>
-						</select>
-					</div>
-				</td>
+                <td>
+                    <div class="form-group">
+                        <select class="form-control" name="HUMANA" id="GH" onchange="ValidarBOTTON()">
+                            <option selected="selected" disabled>SELECCIONE LA FECHA DE INGRESO A G.H</option>
+                            <?php foreach ($error as $key) { ?>
+                            <option><?php echo $key; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </td>
 
-				<td>
-					<button class="btn btn-primary">GENERAR INFORME <i class="fas fa-cloud-download-alt"></i></button>
-				</td>
-				</td>
+                <td>
+                    <button id="BTNGH" class="btn btn-primary">GENERAR INFORME <i
+                            class="fas fa-cloud-download-alt"></i></button>
+                </td>
+                </td>
 
-			</form>
+            </form>
 
-			</div>
-	</tbody>
-	@endif
-	</table>
+            </div>
+    </tbody>
+    @endif
+    </table>
 
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
 
 
 </body>
