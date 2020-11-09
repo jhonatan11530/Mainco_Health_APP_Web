@@ -1,11 +1,11 @@
 <?php
 require_once("ConexionSQL.php");
 require_once 'PHPExcel.php';
-error_reporting(0);
 
-$fechainicial = $_POST['fechaUNO'];
-$fechafinal = $_POST['fechaDOS'];
-$nombre = $_POST['nombre'];
+
+ $fechainicial = $_REQUEST['fechaUNO']; 
+ $fechafinal = $_REQUEST['fechaDOS']; 
+ $nombre = $_REQUEST['nombre']; 
 
 $SQL = sqlsrv_connect(Server() , connectionInfo());
 
@@ -20,39 +20,6 @@ $filtro = sqlsrv_query($SQL, $consulta);
 while ($row = sqlsrv_fetch_array($filtro,SQLSRV_FETCH_ASSOC)){ 
   $id =  $row['id'];
    }
-/**/
-   $ORDEN = "SELECT numero_op FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN'".$fechainicial."' AND '".$fechafinal."' ORDER BY numero_op DESC";
-$resultadoORDEN = sqlsrv_query($SQL, $ORDEN);
-while ($row = sqlsrv_fetch_array($resultadoORDEN,SQLSRV_FETCH_ASSOC)){ 
-  $ORDEN_DE_PRODUCCION =  $row['numero_op']; 
-   }
-
-   $search = "SELECT operador.cantidad,operador.tarea as tarea,cantidadbase, extandar
-    FROM proyecto.produccion INNER JOIN proyecto.tarea ON proyecto.produccion.cod_producto = proyecto.tarea.id  INNER JOIN proyecto.operador ON proyecto.operador.tarea = proyecto.tarea.tarea
-      WHERE proyecto.operador.inicial='".$fechainicial."' AND proyecto.operador.nombre='".$nombre."' AND proyecto.produccion.numero_op='".$ORDEN_DE_PRODUCCION."' AND proyecto.tarea.numero_op='".$ORDEN_DE_PRODUCCION."'";
-    $res = sqlsrv_query($SQL, $search);  
-  
-    while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
-     $cant[] = $listo["cantidad"];
-      $extandar[] = $listo["extandar"]; 
-
-      $real[]= round($listo["extandar"] *60) / $listo["cantidadbase"];
-    }
-
-    for ($i=0; $i < count($cant); $i++) { 
-
-       $array[] =  $real[$i] / $cant[$i];
-    }
-     $cantidadorden = array_sum($array);
-
-
-$consultaSUM = "SELECT SUM(cantidad) as cantidad FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN'".$fechainicial."' AND '".$fechafinal."'";
-$totaleficiencia = sqlsrv_query($SQL, $consultaSUM);
-while ($row = sqlsrv_fetch_array($totaleficiencia,SQLSRV_FETCH_ASSOC)){ 
-  $cantidad =  $row['cantidad'];
-
-   }
-   $tiemposecond = $cantidad * $cantidadorden;
 
 $consult = "SELECT * FROM proyecto.motivo_paro WHERE id='".$id."' AND fecha BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
 $result = sqlsrv_query($SQL, $consult);
@@ -70,7 +37,7 @@ $ensayo = sqlsrv_query($SQL, $sum_paro);
 $fechas = "SELECT hora_inicial,hora_final FROM proyecto.operador WHERE nombre='".$nombre."'  AND inicial BETWEEN '".$fechainicial."' AND '".$fechafinal."' ";
 $fecha = sqlsrv_query($SQL, $fechas);
 
-$estiman = "SELECT timepo_estimado FROM proyecto.promedio WHERE Descripcion='".$nombre."' AND fecha='".$fechainicial."'  ";
+$estiman = "SELECT timepo_estimado,eficiencia FROM proyecto.promedio WHERE Descripcion='".$nombre."' AND fecha='".$fechainicial."'  ";
 $estimando = sqlsrv_query($SQL, $estiman);
 
 $sumfechas = "SELECT SUM(DATEDIFF(SECOND,hora_inicial,hora_final)) AS total FROM proyecto.operador WHERE nombre='".$nombre."'  AND inicial BETWEEN '".$fechainicial."' AND '".$fechafinal."' ";
@@ -140,9 +107,10 @@ while($row = sqlsrv_fetch_array($ensayo, SQLSRV_FETCH_ASSOC)) {
 }  
 
 while($row = sqlsrv_fetch_array($estimando, SQLSRV_FETCH_ASSOC)) {
-  $estimado= $row["timepo_estimado"] ; 
+ $estimado= $row["timepo_estimado"]; 
+ $eficiencia= $row["eficiencia"]; 
  
-  $estimados = gmdate('H:i:s', $estimado);
+ $objPHPExcel->getActiveSheet()->setCellValue('F7' ,$eficiencia."%");
   $objPHPExcel->getActiveSheet()->setCellValue('H7' ,$estimado);
 
 } 
@@ -171,11 +139,10 @@ while ($row = sqlsrv_fetch_array($resultt,SQLSRV_FETCH_ASSOC)){
              $habil = $timeprogramado - $timeproduccido;
              
               $habiles = gmdate('H:i:s', $habil);
-             $EFICIENCIA_TOTAL = round($tiemposecond / $habil * 100);
 
            $objPHPExcel->getActiveSheet()->setCellValue('K'.$filas ,$habiles);
 
-           $objPHPExcel->getActiveSheet()->setCellValue('F7' ,$EFICIENCIA_TOTAL."%");
+           
 
     $objPHPExcel->getActiveSheet()->setCellValue('J'.$filas ,$real);
       $filas++;
