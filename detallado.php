@@ -12,9 +12,6 @@ $SQL = sqlsrv_connect(Server() , connectionInfo());
 $conn = "SELECT * FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN'".$fechainicial."' AND '".$fechafinal."' ORDER BY numero_op DESC";
 $resultado = sqlsrv_query($SQL, $conn);
 
-$connficiencia = "SELECT SUM(CAST(eficencia as int)) as eficencia FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN'".$fechainicial."' AND '".$fechafinal."'";
-$totaleficiencia = sqlsrv_query($SQL, $connficiencia);
-
 $sql_consulta = "SELECT  DISTINCT nombre FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
 $resultt = sqlsrv_query($SQL, $sql_consulta);
 
@@ -23,43 +20,40 @@ $filtro = sqlsrv_query($SQL, $consulta);
 while ($row = sqlsrv_fetch_array($filtro,SQLSRV_FETCH_ASSOC)){ 
   $id =  $row['id'];
    }
-  /* 
+/**/
    $ORDEN = "SELECT numero_op FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN'".$fechainicial."' AND '".$fechafinal."' ORDER BY numero_op DESC";
 $resultadoORDEN = sqlsrv_query($SQL, $ORDEN);
 while ($row = sqlsrv_fetch_array($resultadoORDEN,SQLSRV_FETCH_ASSOC)){ 
-  $ORDEN_DE_PRODUCCION =  $row['numero_op'];
+  $ORDEN_DE_PRODUCCION =  $row['numero_op']; 
    }
-   
+
    $search = "SELECT operador.cantidad,operador.tarea as tarea,cantidadbase, extandar
     FROM proyecto.produccion INNER JOIN proyecto.tarea ON proyecto.produccion.cod_producto = proyecto.tarea.id  INNER JOIN proyecto.operador ON proyecto.operador.tarea = proyecto.tarea.tarea
-      WHERE proyecto.operador.inicial='".$fechainicial."' AND proyecto.operador.nombre='".$nombre."' AND proyecto.produccion.numero_op='".$ORDEN_DE_PRODUCCION."'";
+      WHERE proyecto.operador.inicial='".$fechainicial."' AND proyecto.operador.nombre='".$nombre."' AND proyecto.produccion.numero_op='".$ORDEN_DE_PRODUCCION."' AND proyecto.tarea.numero_op='".$ORDEN_DE_PRODUCCION."'";
     $res = sqlsrv_query($SQL, $search);  
-    
-    $cant = array();
-    $extandar = array();
+  
     while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
      $cant[] = $listo["cantidad"];
-      $extandar[] = round($listo["extandar"] *3600) / $listo["cantidadbase"];
-    
+      $extandar[] = $listo["extandar"]; 
+
+      $real[]= round($listo["extandar"] *60) / $listo["cantidadbase"];
     }
 
     for ($i=0; $i < count($cant); $i++) { 
 
-       $array[] = $cant[$i] * $extandar[$i];
+       $array[] =  $real[$i] / $cant[$i];
     }
+     $cantidadorden = array_sum($array);
 
-    $cantidadorden = array_sum($array);
 
-
-$consultaSUM = "SELECT SUM(cantidad) as cantidad FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
-$sumCant = sqlsrv_query($SQL, $consultaSUM);
-while ($row = sqlsrv_fetch_array($sumCant,SQLSRV_FETCH_ASSOC)){ 
+$consultaSUM = "SELECT SUM(cantidad) as cantidad FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN'".$fechainicial."' AND '".$fechafinal."'";
+$totaleficiencia = sqlsrv_query($SQL, $consultaSUM);
+while ($row = sqlsrv_fetch_array($totaleficiencia,SQLSRV_FETCH_ASSOC)){ 
   $cantidad =  $row['cantidad'];
 
    }
-   $EFICIENCIAGLOBAL = round($cantidad / $cantidadorden * 100);
-   
-*/
+   $tiemposecond = $cantidad * $cantidadorden;
+
 $consult = "SELECT * FROM proyecto.motivo_paro WHERE id='".$id."' AND fecha BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
 $result = sqlsrv_query($SQL, $consult);
 
@@ -133,11 +127,6 @@ $objPHPExcel->getActiveSheet()->setCellValue('H6', 'TIEMPO TOTAL ESTIMADO');
 
 $objPHPExcel->getActiveSheet()->setCellValue('F6', 'EFICIENCIA TOTAL');
 
-while ($row = sqlsrv_fetch_array($totaleficiencia,SQLSRV_FETCH_ASSOC)){ 
-
-  $objPHPExcel->getActiveSheet()->setCellValue('F7' ,strval($row['eficencia'])."%" );
-
-  }
 
 while ($row = sqlsrv_fetch_array($filtro,SQLSRV_FETCH_ASSOC)){ 
   $cantidad =  $row['cantidad'];
@@ -164,6 +153,7 @@ while ($row = sqlsrv_fetch_array($resultt,SQLSRV_FETCH_ASSOC)){
     $fila++;
 
   }
+
   while ($row = sqlsrv_fetch_array($sumardiferencia,SQLSRV_FETCH_ASSOC)){ 
   
      $totalfechas =  $row['total'];
@@ -181,8 +171,11 @@ while ($row = sqlsrv_fetch_array($resultt,SQLSRV_FETCH_ASSOC)){
              $habil = $timeprogramado - $timeproduccido;
              
               $habiles = gmdate('H:i:s', $habil);
-              
+             $EFICIENCIA_TOTAL = round($tiemposecond / $habil * 100);
+
            $objPHPExcel->getActiveSheet()->setCellValue('K'.$filas ,$habiles);
+
+           $objPHPExcel->getActiveSheet()->setCellValue('F7' ,$EFICIENCIA_TOTAL."%");
 
     $objPHPExcel->getActiveSheet()->setCellValue('J'.$filas ,$real);
       $filas++;
@@ -240,5 +233,5 @@ $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 $objWriter->save('php://output');
 
 
-exit; 
-/**/
+exit; /*
+*/

@@ -32,7 +32,7 @@ class ProduccionController extends Controller
     {
 
         $produccion = Produccion::all();
-        return view('produccion.crear', compact('numero_id','produccion'));
+        return view('produccion.crear', compact('produccion'));
     }
 
     /**
@@ -54,8 +54,6 @@ class ProduccionController extends Controller
             'programadas',
             'autorizado'
 
-
-        
         ]);
         if ($validator->fails()) {
             

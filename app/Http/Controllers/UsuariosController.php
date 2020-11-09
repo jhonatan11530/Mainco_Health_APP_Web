@@ -121,13 +121,7 @@ class UsuariosController extends Controller
             $usuario->update($nuevosDatosUsuario);
             return redirect('usuarios')->with('info','ACTUALIZO LOS DATOS EXITOSAMENTE !');
         }
-            
-        
-       
 
-                
-               
-                
     }
     /**
      * Remove the specified resource from storage.
