@@ -1,7 +1,7 @@
 @extends('layout/plantilla')
 <script src="{{url('js/core/jquery.3.2.1.min.js')}}"></script>
 <script src="{{url('js/jquery.dataTables.min.js')}}"></script>
-
+<script src="{{url('js/moment.js')}}"></script>
 
 <script>
 $(document).ready(function() {
@@ -75,9 +75,9 @@ $(document).ready(function() {
                 .draw();
         }
 
-        if (table1.column(6).search() !== fecha.format("DD/MM/YYYY")) {
+        if (table1.column(5).search() !== fecha.format("DD/MM/YYYY")) {
             table1
-                .column(6)
+                .column(5)
                 .search(fecha.format("DD/MM/YYYY"))
                 .draw();
         }
