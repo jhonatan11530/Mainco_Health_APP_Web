@@ -81,11 +81,9 @@ class ProduccionController extends Controller
      * @param  int  $numero_op
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
 
-        $produccion = Produccion::find($id);
-        return view('produccion.editar', compact('produccion'));
     }
 
 

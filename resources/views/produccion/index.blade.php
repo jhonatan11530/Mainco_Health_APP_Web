@@ -53,7 +53,6 @@ $(document).ready(function() {
                             <th>Descripcion</th>
                             <th>Cantidad</th>
                             @if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
-                            <th>EDITAR</th>
                             <th>ELIMINAR</th>
                             @endif
                         </tr>
@@ -67,8 +66,6 @@ $(document).ready(function() {
                             <td>{{$produccion->descripcion}}</td>
                             <td>{{$produccion->cantidad}}</td>
                             @if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
-                            <td><a href="{{ route('produccion.edit', $produccion->id) }}"
-                                    class="btn btn-warning">Editar</a> </td>
                             <td>
                                 {!! Form::open(['method' => 'DELETE', 'route'=>['produccion.destroy', $produccion->id]])
                                 !!}
