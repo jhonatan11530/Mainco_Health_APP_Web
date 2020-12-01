@@ -76,31 +76,7 @@
             <!-- End Navbar -->
         </div>
 
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="exampleModalLongTitle">Usuario Inactivo</h2>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h2>
-                            ¿ Desea Cerrar sesión por inactividad o mantener su sesión activa ?
-                        </h2>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="Exit();">Cerrar
-                            sesión</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="Reset();">Mantener
-                            Activo</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
         <!-- Sidebar -->
         <div class="sidebar sidebar-style-2">
             <div class="sidebar-wrapper scrollbar scrollbar-inner">
@@ -122,16 +98,6 @@
                             </a>
                         </div>
                     </div>
-
-                    <ul class="nav nav-primary">
-                        <li class="nav-item active">
-                            <a data-toggle="collapse" class="collapsed">
-                                <i class="fas fa-clock"></i>
-                                <p id="demo"></p>
-                            </a>
-
-                        </li>
-                    </ul>
 
                     @if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
                     <ul class="nav nav-primary">
@@ -362,82 +328,6 @@
     <!-- Fonts and icons -->
     <script src="{{url('js/plugin/webfont/webfont.min.js')}}"></script>
 
-    <script>
-    // Set the date we're counting down to
-    var countDownDate = new Date();
-    countDownDate.setHours(countDownDate.getHours() + 2);
-    //var real = countDownDate.getHours()+1+":"+countDownDate.getMinutes()+":"+countDownDate.getSeconds();
-
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-
-        // Get today's date and time
-        var now = new Date().getTime();
-
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
-        // Time calculations for days, hours, minutes and seconds
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        // Output the result in an element with id="demo"
-        document.getElementById("demo").innerHTML = hours + "H " +
-            minutes + "M " + seconds + "S";
-        document.getElementById("demo").style.color = "#000000";
-        document.getElementById("demo").style.fontSize = "18px";
-        // If the count down is over, write some text 
-
-        if (hours = 0 && minutes < 20) {
-            clearInterval(x);
-            $('#exampleModalCenter').modal('show');
-        }
-
-        if (distance = 0) {
-            clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRO";
-            window.location.href = "{{ url('logout') }}";
-        }
-
-
-    }, 1000);
-
-    function Reset() {
-        document.getElementById("demo").innerHTML = "REINICIANDO";
-        // Set the date we're counting down to
-        var countDownDate = new Date();
-        countDownDate.setHours(countDownDate.getHours() + 2);
-
-        // Update the count down every 1 second
-        var x = setInterval(function() {
-
-            // Get today's date and time
-            var now = new Date().getTime();
-
-            // Find the distance between now and the count down date
-            var distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Output the result in an element with id="demo"
-            document.getElementById("demo").innerHTML = hours + "H " +
-                minutes + "M " + seconds + "S";
-            document.getElementById("demo").style.color = "#000000";
-            document.getElementById("demo").style.fontSize = "18px";
-
-            if (hours = 0 && minutes < 20) {
-                clearInterval(x);
-                $('#exampleModalCenter').modal('show');
-            }
-        }, 1000);
-    }
-
-    function Exit() {
-        window.location.href = "{{ url('logout') }}";
-    }
-    </script>
 
     @yield('scripts')
 
