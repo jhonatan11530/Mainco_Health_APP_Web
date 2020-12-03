@@ -4,6 +4,9 @@
 <script>
 $(document).ready(function() {
     $('table').DataTable({
+        scrollY:        '50vh',
+        scrollCollapse: true,
+        paging:         false,
         "language": {
             "url": "js/Spanish.json"
 
@@ -60,7 +63,7 @@ $(document).ready(function() {
                     <tbody>
 
                         @foreach ($produccion as $produccion)
-                    
+
                         <tr>
                             <td>{{$produccion->numero_op}}</td>
                             <td>{{$produccion->cod_producto}}</td>
@@ -68,7 +71,8 @@ $(document).ready(function() {
                             <td>{{$produccion->cantidad}}</td>
                             @if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
                             <td>
-                            <button type="button" class="btn btn-danger" data-toggle="modal"data-target="#exampleModal">ELIMINAR</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModal">ELIMINAR</button>
                             </td>
                             @endif
                         </tr>
@@ -93,14 +97,16 @@ $(document).ready(function() {
                             <div class="modal-body">
                                 SE ELIMINARA EL REGISTRO
                             </div>
-                            
+
                             <div class="modal-footer">
-                            {!! Form::open(['method' => 'DELETE', 'route'=>['produccion.destroy', $produccion->id]])!!}
+                                {!! Form::open(['method' => 'DELETE', 'route'=>['produccion.destroy',
+                                $produccion->id]])!!}
                                 {!! Form::submit('Eliminar', ['class' => 'btn btn-danger mt-3']) !!}
-                                <button type="button" class="btn btn-primary mt-3" data-dismiss="modal">No Eliminar</button>
-                            {!! Form::close() !!}
+                                <button type="button" class="btn btn-primary mt-3" data-dismiss="modal">No
+                                    Eliminar</button>
+                                {!! Form::close() !!}
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

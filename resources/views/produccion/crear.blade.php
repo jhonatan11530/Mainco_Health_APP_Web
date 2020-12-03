@@ -72,12 +72,14 @@
 
                         <div class="form-group">
                             {!! Form::label('Codigo producto', 'Descripcion del producto :') !!}
-                            <input type="text" name="descripcion" class="form-control" value="DEBE SELECCIONAR EL ITEM PRIMERO" readonly />
+                            <input type="text" name="descripcion" class="form-control"
+                                value="DEBE SELECCIONAR EL ITEM PRIMERO" readonly />
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('cantidad', 'Cantidad:') !!}
-                            <input type="text" name="cantidad" class="form-control" value="DEBE SELECCIONAR EL ITEM PRIMERO" readonly/>
+                            <input type="text" name="cantidad" class="form-control"
+                                value="DEBE SELECCIONAR EL ITEM PRIMERO" readonly />
                         </div>
 
 

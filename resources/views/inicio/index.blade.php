@@ -41,16 +41,18 @@
                                         <h2>En este sistema se podra consultar o extraer informacion sobre el area de
                                             produccion<br><br>
 
-                                            COMO FUNCIONA MAINCO HEALTH APP</strong><br><br>Su principal funcionamiento es
+                                            COMO FUNCIONA MAINCO HEALTH APP</strong><br><br>Su principal funcionamiento
+                                            es
                                             extraer informacion o generar un informe sobre los operadores y las
                                             cantidades produccidas o rechazadas,tener un control mas preciso en los
                                             tiempos de paro<br><br>
                                             <center>
-                                            Para descargar la aplicacion porfavor<br> Escanee el codigo QR<br><br>
-                                            <img alt="" src="{{asset('img/QR.png')}}" width='200' height='200' /></center>
-                                            </h2><br><br>
+                                                Para descargar la aplicacion porfavor<br> Escanee el codigo QR<br><br>
+                                                <img alt="" src="{{asset('img/QR.png')}}" width='200' height='200' />
+                                            </center>
+                                        </h2><br><br>
                                     </td>
-                                    
+
                                 </tr>
                     </div>
                     </tbody>

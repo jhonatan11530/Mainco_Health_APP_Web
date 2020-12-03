@@ -54,28 +54,28 @@ function variable() {
 }
 
 function SQL() {
-  var x = document.getElementById("op").value;
-  console.log(x);
+    var x = document.getElementById("op").value;
+    console.log(x);
 
-  $.ajax({
-            type: 'GET',
-            url: '../../../ajax/VerificarOrdenProduccion.php',
-            data: "verificar="+x,
-            success: function(data) {
-                /*
-                 * Se ejecuta cuando termina la petición y esta ha sido
-                 * correcta
-                 * */
-                $(".respuesta").html(data);
+    $.ajax({
+        type: 'GET',
+        url: '../../../ajax/VerificarOrdenProduccion.php',
+        data: "verificar=" + x,
+        success: function(data) {
+            /*
+             * Se ejecuta cuando termina la petición y esta ha sido
+             * correcta
+             * */
+            $(".respuesta").html(data);
 
-            },
-            error: function(data) {
-                /*
-                 * Se ejecuta si la peticón ha sido erronea
-                 * */
-                alert("Problemas al tratar de enviar el formulario");
-            }
-        });
+        },
+        error: function(data) {
+            /*
+             * Se ejecuta si la peticón ha sido erronea
+             * */
+            alert("Problemas al tratar de enviar el formulario");
+        }
+    });
 }
 </script>
 <?php
@@ -95,7 +95,7 @@ while ($e = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
         <div class="col-md-6 mx-auto">
             <div class="card full-height">
                 <div class="card-body">
-                <p class="respuesta"></p>
+                    <p class="respuesta"></p>
                     <form id="myForm" action="../../../ajax/InsertTarea.php" method="GET">
 
                         <div class="form-group">
@@ -126,7 +126,7 @@ while ($e = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
                         <div class="form-group">
                             {!! Form::label('cantidad', 'Cantidad:') !!}
                             <input class="form-control" type="text" id="variable1" name="cantidad" onchange="variable()"
-                            required />
+                                required />
                         </div>
 
                         <div class="form-group">
