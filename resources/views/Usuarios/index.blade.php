@@ -67,10 +67,7 @@ $(document).ready(function() {
                             <td><a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-warning">Editar</a>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#exampleModal">
-                                    ELIMINAR
-                                </button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">ELIMINAR</button>
 
                             </td>
                             @endif
@@ -95,8 +92,9 @@ $(document).ready(function() {
                             <div class="modal-footer">
                                 {!! Form::open(['method' => 'DELETE', 'route'=>['usuarios.destroy', $usuario->id]]) !!}
                                 {!! Form::submit('Eliminar', ['class' => 'btn btn-danger mt-3']) !!}
+                                
+                                <button type="button" class="btn btn-primary mt-3" data-dismiss="modal">No Eliminar</button>
                                 {!! Form::close() !!}
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">No Eliminar</button>
                             </div>
                         </div>
                     </div>

@@ -54,7 +54,7 @@
                         <li class="nav-item toggle-nav-search hidden-caret">
                             <a class="nav-link" data-toggle="collapse" href="#search-nav" role="button"
                                 aria-expanded="false" aria-controls="search-nav">
-                                <i class="fa fa-search"></i>
+                                <strong> VERSION 1.5</strong>
                             </a>
                         </li>
                         <li class="nav-item dropdown hidden-caret">
@@ -76,7 +76,6 @@
             <!-- End Navbar -->
         </div>
 
-        
         <!-- Sidebar -->
         <div class="sidebar sidebar-style-2">
             <div class="sidebar-wrapper scrollbar scrollbar-inner">
@@ -84,8 +83,6 @@
                     <div class="user">
                         <div class="info">
                             <a data-toggle="collapse" aria-expanded="false">
-
-
                                 <span>
                                     Usuario : {{ Auth::user()->nomusuario}} {{ Auth::user()->apeusuario}}
 

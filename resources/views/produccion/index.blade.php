@@ -58,8 +58,9 @@ $(document).ready(function() {
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($produccion as $produccion)
 
+                        @foreach ($produccion as $produccion)
+                    
                         <tr>
                             <td>{{$produccion->numero_op}}</td>
                             <td>{{$produccion->cod_producto}}</td>
@@ -67,11 +68,7 @@ $(document).ready(function() {
                             <td>{{$produccion->cantidad}}</td>
                             @if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
                             <td>
-                                {!! Form::open(['method' => 'DELETE', 'route'=>['produccion.destroy', $produccion->id]])
-                                !!}
-                                {!! Form::submit('Eliminar', ['class' => 'btn btn-danger mt-3']) !!}
-                                {!! Form::close() !!}
-
+                            <button type="button" class="btn btn-danger" data-toggle="modal"data-target="#exampleModal">ELIMINAR</button>
                             </td>
                             @endif
                         </tr>
@@ -83,6 +80,30 @@ $(document).ready(function() {
 
                 </table>
 
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title" id="exampleModalLabel">SEGURO QUE DESEA ELIMINAR ?</h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                SE ELIMINARA EL REGISTRO
+                            </div>
+                            
+                            <div class="modal-footer">
+                            {!! Form::open(['method' => 'DELETE', 'route'=>['produccion.destroy', $produccion->id]])!!}
+                                {!! Form::submit('Eliminar', ['class' => 'btn btn-danger mt-3']) !!}
+                                <button type="button" class="btn btn-primary mt-3" data-dismiss="modal">No Eliminar</button>
+                            {!! Form::close() !!}
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>

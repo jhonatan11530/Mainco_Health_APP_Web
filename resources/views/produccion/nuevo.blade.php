@@ -52,6 +52,31 @@ function enviarajax(dato, orden) {
 function variable() {
     document.getElementById("variable2").value = document.getElementById("variable1").value;
 }
+
+function SQL() {
+  var x = document.getElementById("op").value;
+  console.log(x);
+
+  $.ajax({
+            type: 'GET',
+            url: '../../../ajax/VerificarOrdenProduccion.php',
+            data: "verificar="+x,
+            success: function(data) {
+                /*
+                 * Se ejecuta cuando termina la petición y esta ha sido
+                 * correcta
+                 * */
+                $(".respuesta").html(data);
+
+            },
+            error: function(data) {
+                /*
+                 * Se ejecuta si la peticón ha sido erronea
+                 * */
+                alert("Problemas al tratar de enviar el formulario");
+            }
+        });
+}
 </script>
 <?php
 
@@ -70,7 +95,7 @@ while ($e = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
         <div class="col-md-6 mx-auto">
             <div class="card full-height">
                 <div class="card-body">
-
+                <p class="respuesta"></p>
                     <form id="myForm" action="../../../ajax/InsertTarea.php" method="GET">
 
                         <div class="form-group">
@@ -80,7 +105,7 @@ while ($e = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 
                         <div class="form-group">
                             {!! Form::label('Asignar numero op', 'Asignar numero op :') !!}
-                            <input class="form-control" id="op" name="numero_op" required />
+                            <input class="form-control" id="op" onchange="SQL()" name="numero_op" required />
 
                         </div>
 
@@ -101,19 +126,19 @@ while ($e = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
                         <div class="form-group">
                             {!! Form::label('cantidad', 'Cantidad:') !!}
                             <input class="form-control" type="text" id="variable1" name="cantidad" onchange="variable()"
-                                require />
+                            required />
                         </div>
 
                         <div class="form-group">
-                            <input class="form-control" type="hidden" id="variable2" name="autorizado" require />
+                            <input class="form-control" type="hidden" id="variable2" name="autorizado" required />
                         </div>
                         <div class="form-group">
-                            <input type="hidden" name="programadas" value="08:00:00" class="form-control" require />
+                            <input type="hidden" name="programadas" value="08:00:00" class="form-control" required />
                         </div>
 
 
 
-                        <input type="submit" class="form-control btn btn-primary" value="Aplicar filtro">
+                        <input type="submit" class="form-control btn btn-primary" value="CREAR ORDEN DE PRODUCCION">
 
                     </form>
 
@@ -123,5 +148,4 @@ while ($e = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
             </div>
         </div>
     </div>
-    <p class="respuesta"></p>
     @stop
