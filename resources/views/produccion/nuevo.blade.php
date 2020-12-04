@@ -136,7 +136,7 @@ while ($e = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 
 
 
-                        <input type="submit" class="form-control btn btn-primary" value="CREAR ORDEN DE PRODUCCION">
+                        <input type="submit" class="form-control btn btn-primary" id="envio" value="CREAR ORDEN DE PRODUCCION">
 
                     </form>
 

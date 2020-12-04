@@ -13,10 +13,10 @@
       }
 
       date_default_timezone_set('America/Bogota');
-      error_reporting(0);
+
 
       $orden = $_REQUEST["numero_op"];
-      $code = $_REQUEST["cod_producto"];
+       $code = $_REQUEST["cod_producto"];
       $descripcion = $_REQUEST["descripcion"];
       $cantidad = $_REQUEST["cantidad"];
       $programadas = $_REQUEST["programadas"];
@@ -39,6 +39,7 @@
          $cantidadbases[] = $valores['cantidadbase'];
          $extandars[] = number_format((float)$valores['extandar'], 8, '.', '');
       }
+
       for ($i = 0; $i < count($ids); $i++) {
           $id = $ids[$i];
           $tarea = $tareas[$i];
