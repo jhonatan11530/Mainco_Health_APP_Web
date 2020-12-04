@@ -59,10 +59,10 @@
                                         $serverName = "srv2008";
                                         $connectionInfo = array("Database" => "proyecto", "UID" => "proyecto", "PWD" => "12345", "CharacterSet" => "UTF-8");
                                         $mysqli = sqlsrv_connect($serverName, $connectionInfo);
-                                        $sql_statement = "SELECT DISTINCT cod_producto FROM proyecto.produccion ORDER BY cod_producto ASC";
+                                        $sql_statement = "SELECT id,cod_producto FROM proyecto.produccion ORDER BY cod_producto ASC";
                                         $result = sqlsrv_query($mysqli, $sql_statement);
                                         while ($valores = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-                                             echo '<option>' . $valores["cod_producto"] . '</option>';
+                                             echo '<option value='.$valores["id"] .'>' . $valores["cod_producto"] . '</option>';
                                         }
                                         ?>
                             </select>

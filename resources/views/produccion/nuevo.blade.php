@@ -83,7 +83,7 @@ function SQL() {
 $serverName = "srv2008";
 $connectionInfo = array("Database" => "proyecto", "UID" => "proyecto", "PWD" => "12345", "CharacterSet" => "UTF-8");
 $mysqli = sqlsrv_connect($serverName, $connectionInfo);
-$sql_statement = "SELECT MAX(autoincrement)+1 as id FROM proyecto.produccion";
+$sql_statement = "SELECT MAX(id)+1 as id FROM proyecto.produccion";
 $result = sqlsrv_query($mysqli, $sql_statement);
 while ($e = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
      $salida = $e["id"];
@@ -121,17 +121,11 @@ while ($e = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
                                 value="{{$produccion->descripcion}}" readonly />
                         </div>
 
-
-
                         <div class="form-group">
                             {!! Form::label('cantidad', 'Cantidad:') !!}
-                            <input class="form-control" type="text" id="variable1" name="cantidad" onchange="variable()"
-                                required />
+                            <input class="form-control" type="text" id="variable1" name="cantidad" onchange="variable()" required />
                         </div>
 
-                        <div class="form-group">
-                            <input class="form-control" type="hidden" id="variable2" name="autorizado" required />
-                        </div>
                         <div class="form-group">
                             <input type="hidden" name="programadas" value="08:00:00" class="form-control" required />
                         </div>

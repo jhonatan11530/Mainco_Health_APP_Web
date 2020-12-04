@@ -14,18 +14,17 @@
 
       date_default_timezone_set('America/Bogota');
       error_reporting(0);
-      $identi = $_REQUEST["id"];
+
       $orden = $_REQUEST["numero_op"];
       $code = $_REQUEST["cod_producto"];
       $descripcion = $_REQUEST["descripcion"];
       $cantidad = $_REQUEST["cantidad"];
-      $autorizado = $_REQUEST["autorizado"];
       $programadas = $_REQUEST["programadas"];
 
    
       $mysqli = sqlsrv_connect(Server(), connectionInfo());
-      $produccion = "INSERT INTO proyecto.produccion(id,numero_op,cod_producto,descripcion,cantidad,programadas,autorizado)
-      VALUES('" . $identi . "','" . $orden . "','" . $code . "','" . $descripcion . "','" . $cantidad . "','" . $programadas . "','" . $autorizado . "')";
+      $produccion = "INSERT INTO proyecto.produccion(numero_op,cod_producto,descripcion,cantidad,programadas)
+      VALUES('" . $orden . "','" . $code . "','" . $descripcion . "','" . $cantidad . "','" . $programadas . "')";
       sqlsrv_query($mysqli, $produccion);
 
       // ID

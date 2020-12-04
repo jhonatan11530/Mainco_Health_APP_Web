@@ -53,7 +53,6 @@ class ProduccionController extends Controller
             'descripcion',
             'cantidad',
             'programadas',
-            'autorizado'
 
         ]);
         if ($validator->fails()) {
