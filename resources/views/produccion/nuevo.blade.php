@@ -127,6 +127,10 @@ while ($e = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
                         </div>
 
                         <div class="form-group">
+                            <input class="form-control" type="hidden" id="variable2" name="autorizado" required />
+                        </div>
+
+                        <div class="form-group">
                             <input type="hidden" name="programadas" value="08:00:00" class="form-control" required />
                         </div>
 

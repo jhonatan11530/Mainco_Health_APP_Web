@@ -20,11 +20,12 @@
       $descripcion = $_REQUEST["descripcion"];
       $cantidad = $_REQUEST["cantidad"];
       $programadas = $_REQUEST["programadas"];
+      $autorizado = $_REQUEST["autorizado"];
 
    
       $mysqli = sqlsrv_connect(Server(), connectionInfo());
-      $produccion = "INSERT INTO proyecto.produccion(numero_op,cod_producto,descripcion,cantidad,programadas)
-      VALUES('" . $orden . "','" . $code . "','" . $descripcion . "','" . $cantidad . "','" . $programadas . "')";
+      $produccion = "INSERT INTO proyecto.produccion(numero_op,cod_producto,descripcion,cantidad,programadas,autorizado)
+      VALUES('" . $orden . "','" . $code . "','" . $descripcion . "','" . $cantidad . "','" . $programadas . "','" . $autorizado . "')";
       sqlsrv_query($mysqli, $produccion);
 
       // ID
