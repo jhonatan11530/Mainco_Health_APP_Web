@@ -24,12 +24,17 @@ while ($row = sqlsrv_fetch_array($filtro,SQLSRV_FETCH_ASSOC)){
 $consult = "SELECT * FROM proyecto.motivo_paro WHERE id='".$id."' AND fecha BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
 $result = sqlsrv_query($SQL, $consult);
 
-$sql_statement = "SELECT numero_op,hora_inicial,hora_final FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
+$sql_statement = "SELECT numero_op FROM proyecto.operador WHERE nombre='".$nombre."' AND inicial BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
 $verificar = sqlsrv_query($SQL, $sql_statement);
 while ($row = sqlsrv_fetch_array($verificar,SQLSRV_FETCH_ASSOC)){ 
-  $op =  $row['numero_op'];
-   }
+   $op =  $row['numero_op']; 
 
+   }
+   $sql_statement = "SELECT cod_producto FROM proyecto.produccion WHERE numero_op='".$op."'";
+   $numeroop = sqlsrv_query($SQL, $sql_statement);
+   while ($row = sqlsrv_fetch_array($numeroop,SQLSRV_FETCH_ASSOC)){ 
+     $cod_producto =  $row['cod_producto'];
+      }
 
 $sum_paro = "SELECT SUM(DATEDIFF(SECOND, '00:00:00', CONVERT(time, tiempo_descanso))) AS tiempo_descanso FROM proyecto.motivo_paro WHERE id='".$id."' AND fecha BETWEEN '".$fechainicial."' AND '".$fechafinal."'";
 $ensayo = sqlsrv_query($SQL, $sum_paro);
@@ -43,11 +48,7 @@ $estimando = sqlsrv_query($SQL, $estiman);
 $sumfechas = "SELECT SUM(DATEDIFF(SECOND,hora_inicial,hora_final)) AS total FROM proyecto.operador WHERE nombre='".$nombre."'  AND inicial BETWEEN '".$fechainicial."' AND '".$fechafinal."' ";
 $sumardiferencia = sqlsrv_query($SQL, $sumfechas);
 
-$sql_statement = "SELECT cod_producto FROM proyecto.produccion WHERE numero_op='".$op."'";
-$numeroop = sqlsrv_query($SQL, $sql_statement);
-while ($row = sqlsrv_fetch_array($numeroop,SQLSRV_FETCH_ASSOC)){ 
-  $NUMEROOP =  $row['cod_producto'];
-   }
+
 
 $objPHPExcel = new PHPExcel();
 $fila =6;
@@ -85,6 +86,8 @@ $objPHPExcel->getActiveSheet()->setCellValue('A9', 'NUMERO O.P');
 $objPHPExcel->getActiveSheet()->setCellValue('B9', 'NUMERO ITEM');
 $objPHPExcel->getActiveSheet()->setCellValue('G9', 'CANTIDAD');
 $objPHPExcel->getActiveSheet()->setCellValue('C9', 'ACTIVIDADES DE LA O.P');
+$objPHPExcel->getActiveSheet()->setCellValue('E9', 'HORA INICIAL');
+$objPHPExcel->getActiveSheet()->setCellValue('F9', 'HORA FINAL');
 $objPHPExcel->getActiveSheet()->setCellValue('H9', 'EFICIENCIA INDIVIDUAL');
 $objPHPExcel->getActiveSheet()->setCellValue('J9', 'TIEMPO PRODUCCIDO');
 $objPHPExcel->getActiveSheet()->setCellValue('J6', 'TIEMPO TOTAL HABIL');
@@ -165,8 +168,9 @@ while ($row = sqlsrv_fetch_array($resultado,SQLSRV_FETCH_ASSOC)){
 
   $objPHPExcel->getActiveSheet()->setCellValue('A'.$actividad ,strval($row['numero_op']) );
   $objPHPExcel->getActiveSheet()->setCellValue('G'.$actividad ,strval($row['cantidad']) );
-  $objPHPExcel->getActiveSheet()->setCellValue('B'.$actividad ,strval($NUMEROOP) );
-
+  $objPHPExcel->getActiveSheet()->setCellValue('B'.$actividad ,strval($cod_producto) );
+  $objPHPExcel->getActiveSheet()->setCellValue('E'.$actividad ,$row['hora_inicial']->format('H:i:s') );
+  $objPHPExcel->getActiveSheet()->setCellValue('F'.$actividad ,$row['hora_final']->format('H:i:s') );
   $objPHPExcel->getActiveSheet()->setCellValue('C'.$actividad ,strval($row['tarea']) );
   $objPHPExcel->getActiveSheet()->setCellValue('H'.$actividad ,strval($row['eficencia'])."%");
 

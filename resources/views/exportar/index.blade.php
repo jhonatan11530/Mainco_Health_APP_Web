@@ -242,8 +242,6 @@
 
                         <tbody>
 
-
-
                             <tr>
                                 <?php
 								if (isset($_REQUEST["ini"]) && isset($_REQUEST["fin"])) {
