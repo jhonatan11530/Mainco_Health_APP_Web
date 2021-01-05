@@ -5,6 +5,6 @@ if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
     $uri = 'http://';
 }
 $uri .= $_SERVER['HTTP_HOST'];
-header('Location: '.$uri.'/mainco/wps/');
+header('Location: '.$uri.'/Mainco/wps/');
 exit;
 ?>
