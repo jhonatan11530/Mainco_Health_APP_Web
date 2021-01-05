@@ -45,7 +45,7 @@ if ($Radio == 86 && isset($fechainicial) && isset($fechafinal)) {
   $objPHPExcel->getActiveSheet()->setCellValue('D2', 'FECHA INICIAL ' . $fechainicial);
   $objPHPExcel->getActiveSheet()->setCellValue('D3', 'FECHA FINAL ' . $fechafinal);
   $objPHPExcel->getActiveSheet()->setCellValue('A5', 'FECHA');
-  $objPHPExcel->getActiveSheet()->setCellValue('B5', 'HORA');
+  $objPHPExcel->getActiveSheet()->setCellValue('B5', 'O.P');
   $objPHPExcel->getActiveSheet()->setCellValue('C5', 'DESCRIPCION');
   $objPHPExcel->getActiveSheet()->setCellValue('D5', 'TIEMPO HABIL');
   $objPHPExcel->getActiveSheet()->setCellValue('E5', 'TIEMPO ESTIMADO');
@@ -56,7 +56,7 @@ if ($Radio == 86 && isset($fechainicial) && isset($fechafinal)) {
   while ($row = sqlsrv_fetch_array($resultado, SQLSRV_FETCH_ASSOC)) {
 
     $fecha = $row['fecha'];
-    $hora = $row['hora'];
+    $hora = $row['OP'];
     $Descripcion = $row['Descripcion'];
     $tiempo_habil = $row['tiempo_habil'];
     $timepo_estimado = $row['timepo_estimado'];
@@ -128,7 +128,7 @@ if ($Radio == 85 && isset($fechainicial) && isset($fechafinal)) {
   $objPHPExcel->getActiveSheet()->setCellValue('D2', 'FECHA INICIAL ' . $fechainicial);
   $objPHPExcel->getActiveSheet()->setCellValue('D3', 'FECHA FINAL ' . $fechafinal);
   $objPHPExcel->getActiveSheet()->setCellValue('A5', 'FECHA');
-  $objPHPExcel->getActiveSheet()->setCellValue('B5', 'HORA');
+  $objPHPExcel->getActiveSheet()->setCellValue('B5', 'O.P');
   $objPHPExcel->getActiveSheet()->setCellValue('C5', 'DESCRIPCION');
   $objPHPExcel->getActiveSheet()->setCellValue('D5', 'TIEMPO HABIL');
   $objPHPExcel->getActiveSheet()->setCellValue('E5', 'TIEMPO ESTIMADO');
@@ -139,7 +139,7 @@ if ($Radio == 85 && isset($fechainicial) && isset($fechafinal)) {
   while ($row = sqlsrv_fetch_array($resultado, SQLSRV_FETCH_ASSOC)) {
 
     $fecha = $row['fecha'];
-    $hora = $row['hora'];
+    $hora = $row['OP'];
     $Descripcion = $row['Descripcion'];
     $tiempo_habil = $row['tiempo_habil'];
     $timepo_estimado = $row['timepo_estimado'];
@@ -207,7 +207,7 @@ if ($Radio == 200 && isset($fechainicial) && isset($fechafinal)) {
   $objPHPExcel->getActiveSheet()->setCellValue('D2', 'FECHA INICIAL ' . $fechainicial);
   $objPHPExcel->getActiveSheet()->setCellValue('D3', 'FECHA FINAL ' . $fechafinal);
   $objPHPExcel->getActiveSheet()->setCellValue('A5', 'FECHA');
-  $objPHPExcel->getActiveSheet()->setCellValue('B5', 'HORA');
+  $objPHPExcel->getActiveSheet()->setCellValue('B5', 'O.P');
   $objPHPExcel->getActiveSheet()->setCellValue('C5', 'DESCRIPCION');
   $objPHPExcel->getActiveSheet()->setCellValue('D5', 'TIEMPO HABIL');
   $objPHPExcel->getActiveSheet()->setCellValue('E5', 'TIEMPO ESTIMADO');
@@ -218,7 +218,7 @@ if ($Radio == 200 && isset($fechainicial) && isset($fechafinal)) {
   while ($row = sqlsrv_fetch_array($resultado, SQLSRV_FETCH_ASSOC)) {
 
     $fecha = $row['fecha'];
-    $hora = $row['hora'];
+    $hora = $row['OP'];
     $Descripcion = $row['Descripcion'];
     $tiempo_habil = $row['tiempo_habil'];
     $timepo_estimado = $row['timepo_estimado'];
