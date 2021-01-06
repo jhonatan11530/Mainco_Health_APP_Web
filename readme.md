@@ -1,9 +1,9 @@
 <p align="center"><a href="https://mainco.com.co" target="_blank"><img src="https://github.com/jhonatan11530/Mainco_Health_APP_Web/blob/main/wps/img/mainco.jpg" width="400"></a></p>
 
 #  QUE ES MAINCO HEALTH APP WEB
-Mainco health app es una aplicacion web que permite generar informes,supervisar
-- permite supervisar a los operadores(REALTIME)
-- permite generar informes(Excel)
+Mainco health app es una aplicacion web que permite supervisar a personal de planta
+- permite supervisar a los operadores (REALTIME)
+- permite generar informes (Excel)
 - permite crear usuarios
 - permite asignar rol a cada usuario dependiendo de su rol asi es su plataforma
 - plataforma diferente para cada usuario
@@ -11,8 +11,10 @@ Mainco health app es una aplicacion web que permite generar informes,supervisar
 - permite supervisar hora inicial / hora final / fecha
 
 
-## ENTORNO DE TRABAJO FRAMEWORK
+## ENTORNO DE TRABAJO
 - LARAVEL
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+
 ## SEGURIDAD VULNERABILIDAD
 Implementacion de seguridad
 
