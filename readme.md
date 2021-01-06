@@ -1,4 +1,4 @@
-<p align="center"><a href="https://mainco.com.co" target="_blank"><img src="https://github.com/jhonatan11530/android/blob/master/app/src/main/res/drawable/spash.jpg" width="400"></a></p>
+<p align="center"><a href="https://mainco.com.co" target="_blank"><img src="https://github.com/jhonatan11530/Mainco_Health_APP_Web/blob/main/wps/img/mainco.jpg" width="400"></a></p>
 
 #  QUE ES MAINCO HEALTH APP
 Mainco health app es una aplicacion para recolectar informacion sobre el area de platan
