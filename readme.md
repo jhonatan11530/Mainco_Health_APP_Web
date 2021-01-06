@@ -12,7 +12,6 @@ Mainco health app es una aplicacion web que permite supervisar a personal de pla
 
 
 ## ENTORNO DE TRABAJO
-- LARAVEL
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 ## SEGURIDAD VULNERABILIDAD
@@ -25,11 +24,12 @@ Implementacion de seguridad
 
 ## CONEXION CON BASE DE DATOS
 - SQL SERVER
-- ORACLE
 
 ## LICENCIA
 Licencia para la aplicacion para Mainco Health Care S.A.S 
 - LICENCIA APACHE V2
 https://github.com/jhonatan11530/android/blob/master/LICENSE.txt
+
+### ADVERTENCIA  este repositorio pertenece a la empresa MAINCO HEALTH CARE S.A.S
 
 ## Copyright © 2019 Mainco Health Care
