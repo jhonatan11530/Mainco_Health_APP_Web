@@ -30,6 +30,7 @@ Licencia para la aplicacion para Mainco Health Care S.A.S
 - LICENCIA APACHE V2
 https://github.com/jhonatan11530/android/blob/master/LICENSE.txt
 
-### ADVERTENCIA  este repositorio pertenece a la empresa MAINCO HEALTH CARE S.A.S
+## ADVERTENCIA EL RESPECTIVO CODIGO DE ESTE REPOSITORIO PERTENECE A MAINCO HEALTH CARE S.A.S
+- MAINCO HEALTH CARE S.A.S TIENE LOS DERECHOS DE AUTOR SOBRE ESTE REPOSITORIO Y CODIGO FUENTE
 
 ## Copyright © 2019 Mainco Health Care
