@@ -2,7 +2,7 @@
 
 #  QUE ES MAINCO HEALTH APP WEB
 Mainco health app es una aplicacion web que permite generar informes,supervisar
-- permite supervisasr a los operadores(REAL TIME)
+- permite supervisar a los operadores(REALTIME)
 - permite generar informes(Excel)
 - permite crear usuarios
 - permite asignar rol a cada usuario dependiendo de su rol asi es su plataforma
@@ -13,6 +13,9 @@ Mainco health app es una aplicacion web que permite generar informes,supervisar
 
 ## ENTORNO DE TRABAJO FRAMEWORK
 - LARAVEL
+## SEGURIDAD VULNERABILIDAD
+para evitar ingreso no autorizado se implemento un sistema basandose en TOKEN'S,
+El usuario tiene un tiempo de inicio de seccion de 120 minutos
 
 ## CONEXION CON BASE DE DATOS
 - SQL SERVER
