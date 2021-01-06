@@ -14,8 +14,12 @@ Mainco health app es una aplicacion web que permite generar informes,supervisar
 ## ENTORNO DE TRABAJO FRAMEWORK
 - LARAVEL
 ## SEGURIDAD VULNERABILIDAD
-para evitar ingreso no autorizado se implemento un sistema basandose en TOKEN'S,
-El usuario tiene un tiempo de inicio de seccion de 120 minutos
+Implementacion de seguridad
+
+- inicio de session basado en token's
+- contraseña encriptada
+- token's de verificacion de logueo
+- token's temporal de logueo y registo en DATABASE
 
 ## CONEXION CON BASE DE DATOS
 - SQL SERVER
