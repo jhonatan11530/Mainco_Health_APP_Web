@@ -31,6 +31,11 @@ Implementacion de seguridad
 ## ESTADO DE DESARROLLO
 - LA APLICACION SE ENCUENTRA TERMINADO-FINALIZADO EL DIA 05/01/2021
 
+## APLICACION MOVIL (ANDROID)
+- La aplicacion web Mainco health App requiere la version movil 
+- la version movil permite registrar en sistema la informacion
+- <a href="https://github.com/jhonatan11530/Mainco_Health_APP_Movil" target="_blank">APLICACION MOVIL</a>
+
 ## LICENCIA
 Licencia para la aplicacion para Mainco Health Care S.A.S 
 - LICENCIA PROPIETARIA
