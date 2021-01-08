@@ -2,7 +2,6 @@
 <script src="{{url('js/core/jquery.3.2.1.min.js')}}"></script>
 <script src="{{url('js/jquery.dataTables.min.js')}}"></script>
 <link rel="stylesheet" href="{{url('css/jquery.dataTables.min.css')}}">
-<link rel="stylesheet" href="{{url('css/flecha.css')}}">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
