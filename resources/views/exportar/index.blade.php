@@ -2,6 +2,7 @@
 <script src="{{url('js/core/jquery.3.2.1.min.js')}}"></script>
 <script src="{{url('js/jquery.dataTables.min.js')}}"></script>
 <link rel="stylesheet" href="{{url('css/jquery.dataTables.min.css')}}">
+<link rel="stylesheet" href="{{url('css/flecha.css')}}">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -111,15 +112,7 @@
 
     }
     </script>
-    <div class="panel-header bg-primary-gradient">
-        <div class="page-inner py-5">
-            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-                <div>
-                    <h2 class="text-white pb-2 fw-bold">EXPORTAR DATOS Y GENERAR INFORMES</h2>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="page-inner mt--5">
         <div class="col mt--4">
             <div class="col-md-12">
@@ -133,6 +126,7 @@
 
                                 @yield('content')
                             </div>
+
                             <table id="multi-filter-select" class="display table table-striped-bg-*states ">
                                 @if ((Auth::user()->rol == 1) or (Auth::user()->rol == 2))
                                 <thead class="bg-primary text-white">
@@ -174,7 +168,7 @@
 
 										?>
 
-                                        <form action="../exportar.php" method="post">
+                                        <form action="../exportars.php" method="post">
 
                                             <td>
 
@@ -221,12 +215,13 @@
                                             </td>
 
                                             <td>
-                                                <button id="Boton" class="btn btn-primary">GENERAR INFORME <i
+                                                <button id="Boton" class="btn btn-primary" data-toggle="modal"
+                                                    data-target=".bd-example-modal-lg">GENERAR INFORME <i
                                                         class="fas fa-cloud-download-alt"></i></button>
                                             </td>
                                             </td>
-
                                         </form>
+
 
 
                         </div>
