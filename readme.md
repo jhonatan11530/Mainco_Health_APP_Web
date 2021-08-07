@@ -1,4 +1,4 @@
-<p align="center"><a href="https://mainco.com.co" target="_blank"><img src="https://github.com/jhonatan11530/Mainco_Health_APP_Web/blob/main/wps/img/mainco.jpg" width="400"></a></p>
+
 
 #  QUE ES MAINCO HEALTH APP WEB
 Mainco health app es una aplicacion web que permite supervisar a personal de planta
@@ -36,11 +36,3 @@ Implementacion de seguridad
 - la version movil permite registrar en sistema la informacion
 - <a href="https://github.com/jhonatan11530/Mainco_Health_APP_Movil" target="_blank">APLICACION MOVIL</a>
 
-## LICENCIA
-Licencia para la aplicacion para Mainco Health Care S.A.S 
-- LICENCIA PROPIETARIA
-
-## ADVERTENCIA DERECHO DE PROPIEDAD INTELECTUAL
-- MAINCO HEALTH CARE S.A.S TIENE LOS DERECHOS DE AUTOR SOBRE ESTE REPOSITORIO Y CODIGO FUENTE
-
-## Copyright © 2019 Mainco Health Care
