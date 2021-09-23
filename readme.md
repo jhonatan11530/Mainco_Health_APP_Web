@@ -1,6 +1,6 @@
+<p align="center"><a href="https://mainco.com.co" target="_blank"><img src="https://github.com/jhonatan11530/android/blob/master/app/src/main/res/drawable/spash.jpg" width="400"></a></p>
 
-
-#  QUE ES Asfort APP WEB
+#  QUE ES MAINCO HEALTH APP WEB
 Mainco health app es una aplicacion web que permite supervisar a personal de planta
 - permite supervisar a los operadores (REALTIME)
 - permite generar informes (Excel)
